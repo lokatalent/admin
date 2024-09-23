@@ -2,17 +2,19 @@ import InfoCard from "@/components/InfoCard";
 import RevenueMetrics from "@/components/RevenueMetrics";
 
 import { FaRegUser } from "react-icons/fa";
-import TalentsPerformance from "@/components/dash/TalentsPerformance"
+import TalentsPerformance from "@/components/dash/TalentsPerformance";
+import BookingTable from "@/components/dash/BookingTable";
+import TransactionTable from "@/components/dash/TransactionTable";
 
 export default function Home() {
 	return (
 		<div className="w-full  ">
-			<div className="flex justify-between w-full py-10  ">
+			<div className="flex flex-col md:flex-row space-y-3 md:space-y-0 justify-between w-full py-10  ">
 				<InfoCard
 					text="Active Bookings"
 					number={19}
 					icon={<FaRegUser color="#8E11F0" />}
-					iconColor="#8280FF"
+					iconColor="#8280FF87"
 				/>
 				<InfoCard
 					text="Total Active Users"
@@ -28,17 +30,11 @@ export default function Home() {
 				/>
 			</div>
 
-			<div className="shadow-md bg-white p-10 my-4">
-				<div className="flex justify-between p-4">
-					<h5 className="font-medium text-2xl">Revenue Metrics</h5>
-
-					<button className="py-2 px-4 bg-[#3377FF1C]">Download Report</button>
-				</div>
-				<RevenueMetrics />
-			</div>
-
 			<div>
-			<TalentsPerformance/>
+				<BookingTable />
+			</div>
+			<div>
+				<TransactionTable />
 			</div>
 		</div>
 	);

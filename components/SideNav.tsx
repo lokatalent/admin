@@ -4,6 +4,7 @@ import {
 	IoReceiptOutline,
 	IoWalletOutline,
 	IoPieChartOutline,
+	IoSettingsOutline,
 } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { RiExchange2Line } from "react-icons/ri";
@@ -33,22 +34,22 @@ const links = [
 		icon: <IoWalletOutline />,
 		link: "",
 	},
-	{
-		id: 5,
-		name: "Disputes",
-		icon: <RiExchange2Line />,
-		link: "",
-	},
-	{
-		id: 6,
-		name: "Analytics",
-		icon: <IoPieChartOutline className="rotate-90" />,
-		link: "",
-	},
+	// {
+	// 	id: 5,
+	// 	name: "Disputes",
+	// 	icon: <RiExchange2Line />,
+	// 	link: "",
+	// },
+	// {
+	// 	id: 6,
+	// 	name: "Analytics",
+	// 	icon: <IoPieChartOutline className="rotate-90" />,
+	// 	link: "",
+	// },
 ];
 const SideNav = () => {
 	return (
-		<div className="bg-primaryBlue h-screen fixed text-white p-8 flex flex-col justify-between ">
+		<div className="bg-primaryBlue h-screen fixed text-white p-8  flex-col justify-between hidden md:flex">
 			<div>
 				<Link href="/">
 					<span className="text-lg font-bold text-white">LokaTalent</span>
@@ -63,7 +64,7 @@ const SideNav = () => {
 								className="flex space-x-3 items-center font-semibold p-3 hover:p-3 focus:p-3 hover:bg-white/30 focus:bg-white/30 rounded-lg"
 							>
 								{link.icon}
-								<p>{link.name}</p>
+								<p className="">{link.name}</p>
 							</Link>
 						);
 					})}
@@ -71,8 +72,12 @@ const SideNav = () => {
 			</div>
 
 			<div>
-				<div>settings</div>
-				<div>name mame</div>
+				<div className="flex space-x-3 items-center font-semibold p-3 hover:p-3 focus:p-3 hover:bg-white/30 focus:bg-white/30 rounded-lg">
+					<IoSettingsOutline /> <p>Settings</p>
+				</div>
+				<div className="items-center font-semibold p-3 hover:p-3 focus:p-3 hover:bg-white/30 focus:bg-white/30 rounded-lg">
+					Gabiel Daramola
+				</div>
 			</div>
 		</div>
 	);

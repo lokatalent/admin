@@ -11,7 +11,10 @@ const config: Config = {
 		extend: {
 			colors: {
 				primaryBlue: "#3377FF",
-				textColor:"#141416",
+				bgWhite: "#F6F5FF",
+				textColor: "#141416",
+				yellow: "#FCEA83",
+				accept: "#AAFFE5",
 				background: "hsl(var(--background))",
 				foreground: "hsl(var(--foreground))",
 				card: {
@@ -60,13 +63,13 @@ const config: Config = {
 			},
 			keyframes: {
 				"caret-blink": {
-				  "0%,70%,100%": { opacity: "1" },
-				  "20%,50%": { opacity: "0" },
+					"0%,70%,100%": { opacity: "1" },
+					"20%,50%": { opacity: "0" },
 				},
-			  },
-			  animation: {
+			},
+			animation: {
 				"caret-blink": "caret-blink 1.25s ease-out infinite",
-			  },
+			},
 		},
 	},
 	plugins: [require("tailwindcss-animate")],

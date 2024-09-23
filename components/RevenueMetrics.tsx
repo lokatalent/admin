@@ -58,14 +58,13 @@ export default function RevenueMetrics() {
 					dataKey="commissionEarned"
 					fill="var(--color-commissionEarned)"
 					radius={2}
-					barSize={10}
+					barSize={15}
 				/>
 				<Bar
 					dataKey="totalPayouts"
 					fill="var(--color-totalPayouts)"
 					radius={2}
-					barSize={10}
-
+					barSize={15}
 				/>
 			</BarChart>
 		</ChartContainer>
