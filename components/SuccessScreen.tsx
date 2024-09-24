@@ -3,7 +3,13 @@ import Image from "next/image";
 import successImage from "@/assets/images/success.png";
 import { Button } from "@/components/ui/button";
 
-const SuccessScreen = ({ head, content, btn, onClick }) => {
+interface SuccessProps {
+	head: string;
+	content: string;
+	btn: string;
+	onClick: () => void;
+}
+const SuccessScreen = ({ head, content, btn, onClick }: SuccessProps) => {
 	return (
 		<div className="w-10/12 mx-auto flex flex-col items-center justify-center p-14 ">
 			<Image

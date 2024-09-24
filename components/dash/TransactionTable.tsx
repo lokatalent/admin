@@ -1,4 +1,4 @@
-import { TransactionType, TransationColumns } from "@/components/dash/Columns";
+import { TransactionType, TransationColumns } from "@/components/Columns";
 import { DataTable } from "@/components/DataTable";
 import Link from "next/link";
 

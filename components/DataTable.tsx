@@ -8,7 +8,6 @@ import {
 	ColumnFiltersState,
 	getFilteredRowModel,
 	FilterFn,
-	equalsString,
 } from "@tanstack/react-table";
 
 import {
@@ -20,6 +19,7 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
+import { rankItem } from "@tanstack/match-sorter-utils";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
@@ -29,6 +29,16 @@ interface DataTableProps<TData, TValue> {
 interface GlobalFilter {
 	globalFilter: any;
 }
+const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+	// Rank the item
+	const itemRank = rankItem(row.getValue(columnId), value);
+
+	// Store the itemRank info
+	addMeta({ itemRank });
+
+	// Return if the item should be filtered in/out
+	return itemRank.passed;
+};
 
 export function DataTable<TData, TValue>({
 	columns,
@@ -42,7 +52,10 @@ export function DataTable<TData, TValue>({
 		columns,
 		getCoreRowModel: getCoreRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
-		globalFilterFn: equalsString,
+		filterFns: {
+			fuzzy: fuzzyFilter, //define as a filter function that can be used in column definitions
+		},
+		globalFilterFn: "fuzzy",
 		state: {
 			globalFilter,
 		},
@@ -53,7 +66,6 @@ export function DataTable<TData, TValue>({
 		<div>
 			<div>
 				<h1 className="font-medium text-2xl">{title}</h1>
-				
 			</div>
 			<div className="flex items-center py-4">
 				<Input

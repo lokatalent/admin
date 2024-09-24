@@ -9,7 +9,7 @@ export default function RootLayout({
 }>) {
 	const loggedIn = true;
 
-	if (!loggedIn) redirect("/login");
+	// if (!loggedIn) redirect("/login");
 	return (
 		<div className=" main-contain mx-8">
 			<div className="sidenav-container">
