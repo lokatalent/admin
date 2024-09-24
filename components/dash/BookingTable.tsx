@@ -66,8 +66,7 @@ export default async function BookingTable() {
 				columns={BookingColumns}
 				data={data}
 				title="Bookings"
-			/>
-			
+			/>		
 		</div>
 	);
 }
