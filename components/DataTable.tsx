@@ -11,23 +11,32 @@ import {
 } from "@tanstack/react-table";
 
 import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { rankItem } from "@tanstack/match-sorter-utils";
 
 interface DataTableProps<TData, TValue> {
-	columns: ColumnDef<TData, TValue>[];
-	data: TData[];
-	title: string;
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  title: string;
 }
+
+const datass = [
+  { label: "New bookings", value: "New bookings" },
+  { label: "Upcoming bookings", value: "Upcoming bookings" },
+  { label: "Instant Bookings", value: "Instant Bookings" },
+  { label: "Schedule Bookings", value: "Schedule Bookings" },
+];
+
+
 interface GlobalFilter {
-	globalFilter: any;
+  globalFilter: any;
 }
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 	// Rank the item
@@ -41,11 +50,11 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 };
 
 export function DataTable<TData, TValue>({
-	columns,
-	data,
-	title,
+  columns,
+  data,
+  title,
 }: DataTableProps<TData, TValue>) {
-	const [globalFilter, setGlobalFilter] = useState<string>("");
+  const [globalFilter, setGlobalFilter] = useState<string>("");
 
 	const table = useReactTable({
 		data,
