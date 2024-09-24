@@ -26,7 +26,7 @@ const links = [
 		id: 3,
 		name: "Bookings",
 		icon: <IoReceiptOutline />,
-		link: "",
+		link: "/bookings",
 	},
 	{
 		id: 4,
