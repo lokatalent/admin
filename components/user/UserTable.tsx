@@ -1,36 +1,116 @@
 import { UserType, UserColumns } from "@/components/Columns";
 import { DataTable } from "@/components/DataTable";
-import { log } from "console";
-import Link from "next/link";
 
 async function getData(): Promise<UserType[]> {
 	return [
 		{
-			
+			id: "1",
 			name: "Justin Cooper",
-            image:'@/assets/images/verify.png',
+			image: "@/assets/images/verify.png",
 			email: "Jaydencooper@gmail.com",
 			type: "Talent",
 			phone: "070123456789",
 			status: "Active",
 		},
 		{
+			id: "2",
 			name: "Martin Cooper",
-            image:'@/assets/images/verify.png',
+			image: "@/assets/images/verify.png",
 			email: "Jaydencooper@gmail.com",
 			type: "Customer",
 			phone: "070123456789",
 			status: "Deleted",
 		},
 		{
+			id: "3",
 			name: "Jayden Cooper",
-            image:'@/assets/images/verify.png',
+			image: "@/assets/images/verify.png",
 			email: "Jaydencooper@gmail.com",
 			type: "Talent",
 			phone: "070123456789",
 			status: "Suspended",
 		},
-	
+		{
+			id: "4",
+			name: "Justin Cooper",
+			image: "@/assets/images/verify.png",
+			email: "Jaydencooper@gmail.com",
+			type: "Talent",
+			phone: "070123456789",
+			status: "Active",
+		},
+		{
+			id: "5",
+			name: "Martin Cooper",
+			image: "@/assets/images/verify.png",
+			email: "Jaydencooper@gmail.com",
+			type: "Customer",
+			phone: "070123456789",
+			status: "Deleted",
+		},
+		{
+			id: "6",
+			name: "Jayden Cooper",
+			image: "@/assets/images/verify.png",
+			email: "Jaydencooper@gmail.com",
+			type: "Talent",
+			phone: "070123456789",
+			status: "Suspended",
+		},
+		{
+			id: "7",
+			name: "Justin Cooper",
+			image: "@/assets/images/verify.png",
+			email: "Jaydencooper@gmail.com",
+			type: "Talent",
+			phone: "070123456789",
+			status: "Active",
+		},
+		{
+			id: "8",
+			name: "Martin Cooper",
+			image: "@/assets/images/verify.png",
+			email: "Jaydencooper@gmail.com",
+			type: "Customer",
+			phone: "070123456789",
+			status: "Deleted",
+		},
+		{
+			id: "9",
+			name: "Jayden Cooper",
+			image: "@/assets/images/verify.png",
+			email: "Jaydencooper@gmail.com",
+			type: "Talent",
+			phone: "070123456789",
+			status: "Suspended",
+		},
+		{
+			id: "10",
+			name: "Justin Cooper",
+			image: "@/assets/images/verify.png",
+			email: "Jaydencooper@gmail.com",
+			type: "Talent",
+			phone: "070123456789",
+			status: "Active",
+		},
+		{
+			id: "11",
+			name: "Martin Cooper",
+			image: "@/assets/images/verify.png",
+			email: "Jaydencooper@gmail.com",
+			type: "Customer",
+			phone: "070123456789",
+			status: "Deleted",
+		},
+		{
+			id: "12",
+			name: "Jayden Cooper",
+			image: "@/assets/images/verify.png",
+			email: "Jaydencooper@gmail.com",
+			type: "Talent",
+			phone: "070123456789",
+			status: "Suspended",
+		},
 	];
 }
 

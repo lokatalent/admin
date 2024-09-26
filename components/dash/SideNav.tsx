@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
 	IoGridOutline,
@@ -8,6 +9,8 @@ import {
 } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { RiExchange2Line } from "react-icons/ri";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const links = [
 	{
@@ -32,42 +35,36 @@ const links = [
 		id: 4,
 		name: "Payments",
 		icon: <IoWalletOutline />,
-		link: "",
+		link: "/payments",
 	},
-	// {
-	// 	id: 5,
-	// 	name: "Disputes",
-	// 	icon: <RiExchange2Line />,
-	// 	link: "",
-	// },
-	// {
-	// 	id: 6,
-	// 	name: "Analytics",
-	// 	icon: <IoPieChartOutline className="rotate-90" />,
-	// 	link: "",
-	// },
 ];
+
 const SideNav = () => {
+	const pathname = usePathname();
+
 	return (
-		<div className="bg-primaryBlue h-screen fixed text-white p-8  flex-col justify-between hidden md:flex">
+		<div className="bg-primaryBlue w-[200px] h-screen fixed text-white p-8 flex-col justify-between hidden md:flex">
 			<div>
 				<Link href="/">
 					<span className="text-lg font-bold text-white">LokaTalent</span>
 				</Link>
 
-				<div className="flex flex-col space-y-7 mt-6 ">
-					{links.map((link) => {
-						return (
-							<Link
-								href={link.link}
-								key={link.id}
-								className="flex space-x-3 items-center font-semibold p-3 hover:p-3 focus:p-3 hover:bg-white/30 focus:bg-white/30 rounded-lg"
-							>
-								{link.icon}
-								<p className="">{link.name}</p>
-							</Link>
-						);
-					})}
+				<div className="flex flex-col space-y-7 mt-6">
+					{links.map((link) => (
+						<Link
+							href={link.link}
+							key={link.id}
+							className={`${
+								(pathname === "/" && link.link === "/") ||
+								(link.link !== "/" && pathname.startsWith(link.link))
+									? "bg-white/30"
+									: ""
+							} text-white flex space-x-3 items-center font-semibold p-3 hover:p-3 focus:p-3 hover:bg-white/30 focus:bg-white/30 rounded-lg`}
+						>
+							{link.icon}
+							<p>{link.name}</p>
+						</Link>
+					))}
 				</div>
 			</div>
 
@@ -75,8 +72,8 @@ const SideNav = () => {
 				<div className="flex space-x-3 items-center font-semibold p-3 hover:p-3 focus:p-3 hover:bg-white/30 focus:bg-white/30 rounded-lg">
 					<IoSettingsOutline /> <p>Settings</p>
 				</div>
-				<div className="items-center font-semibold p-3 hover:p-3 focus:p-3 hover:bg-white/30 focus:bg-white/30 rounded-lg">
-					Gabiel Daramola
+				<div className="items-center font-semibold  hover:p-3 focus:p-3 hover:bg-white/30 focus:bg-white/30 rounded-lg">
+					Gabriel Daramola
 				</div>
 			</div>
 		</div>
