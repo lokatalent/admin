@@ -1,13 +1,12 @@
 import InfoCard from "@/components/InfoCard";
-import RevenueMetrics from "@/components/RevenueMetrics";
-
 import { FaRegUser } from "react-icons/fa";
-import TalentsPerformance from "@/components/dash/TalentsPerformance";
-import BookingTable from "@/components/dash/BookingTable";
-import TransactionTable from "@/components/dash/TransactionTable";
 import { IoMdTrendingUp, IoMdTrendingDown } from "react-icons/io";
+import TalentsPerformance from "@/components/dash/TalentsPerformance";
+import { Card, CardHeader } from "@/components/ui/card";
+import BookingTable from "@/components/bookings/BookingTable";
+import FilterDialog from '@/components/bookings/filterDialog';
 
-export default function Bookings() {
+export default function Booking() {
   return (
     <div className="w-full  ">
       <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 justify-between w-full py-10  ">
@@ -45,8 +44,13 @@ export default function Bookings() {
 
       <div>
         <BookingTable />
+        {/* <TalentsPerformance /> */}
+        {/* <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+                <Card className="mx-auto">
+                  <CardHeader>d</CardHeader>
+                </Card>
+              </div> */}
       </div>
-      
     </div>
   );
 }

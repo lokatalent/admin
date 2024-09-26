@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import {
-	ColumnDef,
-	flexRender,
-	getCoreRowModel,
-	useReactTable,
-	ColumnFiltersState,
-	getFilteredRowModel,
-	FilterFn,
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  ColumnFiltersState,
+  getFilteredRowModel,
+  FilterFn,
 } from "@tanstack/react-table";
 
 import {
@@ -20,6 +20,21 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { rankItem } from "@tanstack/match-sorter-utils";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+// import { HiOutlineMenu } from "react-icons/hi";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import FilterDialog from "./bookings/filterDialog";
+import { LiaSlidersHSolid } from "react-icons/lia";
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -27,26 +42,23 @@ interface DataTableProps<TData, TValue> {
   title: string;
 }
 
-const datass = [
-  { label: "New bookings", value: "New bookings" },
-  { label: "Upcoming bookings", value: "Upcoming bookings" },
-  { label: "Instant Bookings", value: "Instant Bookings" },
-  { label: "Schedule Bookings", value: "Schedule Bookings" },
-];
-
+interface AboutPageQuery {
+  name: string;
+  age: string;
+}
 
 interface GlobalFilter {
   globalFilter: any;
 }
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
-	// Rank the item
-	const itemRank = rankItem(row.getValue(columnId), value);
+  // Rank the item
+  const itemRank = rankItem(row.getValue(columnId), value);
 
-	// Store the itemRank info
-	addMeta({ itemRank });
+  // Store the itemRank info
+  addMeta({ itemRank });
 
-	// Return if the item should be filtered in/out
-	return itemRank.passed;
+  // Return if the item should be filtered in/out
+  return itemRank.passed;
 };
 
 export function DataTable<TData, TValue>({
@@ -54,88 +66,111 @@ export function DataTable<TData, TValue>({
   data,
   title,
 }: DataTableProps<TData, TValue>) {
+  const router = useRouter();
   const [globalFilter, setGlobalFilter] = useState<string>("");
 
-	const table = useReactTable({
-		data,
-		columns,
-		getCoreRowModel: getCoreRowModel(),
-		getFilteredRowModel: getFilteredRowModel(),
-		filterFns: {
-			fuzzy: fuzzyFilter, //define as a filter function that can be used in column definitions
-		},
-		globalFilterFn: "fuzzy",
-		state: {
-			globalFilter,
-		},
-		onGlobalFilterChange: setGlobalFilter,
-	});
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    filterFns: {
+      fuzzy: fuzzyFilter, //define as a filter function that can be used in column definitions
+    },
+    globalFilterFn: "fuzzy",
+    state: {
+      globalFilter,
+    },
+    onGlobalFilterChange: setGlobalFilter,
+  });
 
-	return (
-		<div>
-			<div>
-				<h1 className="font-medium text-2xl">{title}</h1>
-			</div>
-			<div className="flex items-center py-4">
-				<Input
-					placeholder="Search by order id, name of customer "
-					value={globalFilter}
-					onChange={(e) => table.setGlobalFilter(String(e.target.value))}
-					className="max-w-full"
-				/>
-			</div>
-			<div className="rounded-md border">
-				<Table>
-					<TableHeader>
-						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow key={headerGroup.id}>
-								{headerGroup.headers.map((header) => {
-									return (
-										<TableHead key={header.id}>
-											{header.isPlaceholder
-												? null
-												: flexRender(
-														header.column.columnDef.header,
-														header.getContext(),
-												  )}
-										</TableHead>
-									);
-								})}
-							</TableRow>
-						))}
-					</TableHeader>
-					<TableBody>
-						{table.getRowModel().rows?.length ? (
-							table.getRowModel().rows.map((row) => (
-								<TableRow
-									key={row.id}
-									data-state={row.getIsSelected() && "selected"}
-								>
-									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>
-											{flexRender(
-												cell.column.columnDef.cell,
-												cell.getContext(),
-											)}
-										</TableCell>
-									))}
-								</TableRow>
-							))
-						) : (
-							<TableRow>
-								<TableCell
-									colSpan={columns.length}
-									className="h-24 text-center"
-								>
-									No results.
-								</TableCell>
-							</TableRow>
-						)}
-					</TableBody>
-				</Table>
-			</div>
-		</div>
-	);
+  const handleNavigate = (data) => {
+    console.log(data);
+    const encodedData = encodeURIComponent(JSON.stringify(data));
+    //    router.push(`/about?${queryString}`);
+    router.push(`/bookings/34?data=${encodedData}`);
+  };
+
+  return (
+    <div>
+      <div>
+        <h1 className="font-medium text-2xl">{title}</h1>
+      </div>
+      <div className="flex items-center py-4 gap-2">
+        <Input
+          placeholder="Search by order id, name of customer "
+          value={globalFilter}
+          onChange={(e) => table.setGlobalFilter(String(e.target.value))}
+          className="max-w-full h-12"
+        />
+       
+        <div
+          className="w-12 h-12 rounded-lg"
+          style={{
+            backgroundColor: "#Fff",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderColor: "#E5E7EB",
+            borderWidth: "1px",
+          }}
+        >
+          <LiaSlidersHSolid size={30} />
+        </div>
+      </div>
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                  onClick={() => handleNavigate(row.original)}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
+  );
 }
 
 export default DataTable;
