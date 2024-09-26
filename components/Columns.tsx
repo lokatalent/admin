@@ -1,6 +1,7 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
 import { Image } from "next/image";
+import Link from "next/link";
 export type BookingType = {
 	id: string;
 	customer: string;
@@ -18,6 +19,7 @@ export type TransactionType = {
 	status: "Pending" | "Accepted" | "Declined";
 };
 export type UserType = {
+	id: string;
 	name: any;
 	image: string;
 	email: string;
@@ -119,24 +121,18 @@ export const TransationColumns: ColumnDef<TransactionType>[] = [
 ];
 export const UserColumns: ColumnDef<UserType>[] = [
 	{
-		accessorKey: "name", // This is your 'Name' column
+		accessorKey: "name",
 		header: "Name",
-		// cell: ({ row }) => {
-		// 	const nameData = row.original; // The whole row's data
-		// 	return (
-		// 		<div className="flex items-center space-x-2">
-		// 			<Image
-		// 				src={nameData.image} // Assuming each row has an 'image' field
-		// 				alt={nameData.name}
-		// 				width={32}
-		// 				height={32}
-		// 				className="rounded-full"
-		// 			/>
-		// 			<span>{nameData.name}</span>{" "}
-		// 			{/* Assuming each row has a 'name' field */}
-		// 		</div>
-		// 	);
-		// },
+		cell: ({ row }) => {
+			const nameData = row.original; // The whole row's data
+			return (
+				<div className="flex items-center space-x-2">
+					<Link href={`/users/${nameData.id}`}>
+						<p className="text-blue-500">{nameData.name}</p>
+					</Link>
+				</div>
+			);
+		},
 	},
 	{
 		accessorKey: "email",
