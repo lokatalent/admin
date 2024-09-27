@@ -52,18 +52,7 @@ export default function Detail() {
     setStatus(data);
   }
 
-  // setData(decodedData);
-  //  useEffect(async () => {
-  //    console.log(encodedData)
-  //    if (encodedData) {
-  //      try {
-  //        console.log('decoded dat')
-  //        console.log(decodedData)
-  //      } catch (error) {
-  //        console.error("Error parsing data:", error);
-  //      }
-  //    }
-  //  }, []);
+  
 
   return (
     <div>
