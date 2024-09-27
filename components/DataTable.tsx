@@ -49,7 +49,6 @@ interface AboutPageQuery {
 }
 
 
-
 interface GlobalFilter {
 	globalFilter: any;
 }
