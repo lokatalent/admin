@@ -123,6 +123,7 @@ export default async function UserTable() {
 				columns={UserColumns}
 				data={data}
 				title="User List"
+				type="users"
 			/>
 		</div>
 	);

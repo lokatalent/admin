@@ -61,7 +61,7 @@ export default async function BookingTable() {
 
 	return (
     <div className="card my-5">
-      <DataTable columns={BookingColumns} data={data} title="Bookings" />
+      <DataTable columns={BookingColumns} data={data} title="Bookings" type="bookings" />
      
     </div>
   );
