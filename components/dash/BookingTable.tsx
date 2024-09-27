@@ -4,6 +4,7 @@ import Link from "next/link";
 
 async function getData(): Promise<BookingType[]> {
 	return [
+
 		{
 			id: "12456256565",
 			customer: "Justin Cooper",
@@ -54,12 +55,14 @@ async function getData(): Promise<BookingType[]> {
 		},
 		// ...
 	];
+
 }
 
 export default async function BookingTable({ isHome }) {
 	const data = await getData();
 
 	return (
+
 		<div className="card my-5">
 			<DataTable
 				columns={BookingColumns}
@@ -79,4 +82,5 @@ export default async function BookingTable({ isHome }) {
 			)}
 		</div>
 	);
+
 }

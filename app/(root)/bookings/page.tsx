@@ -1,11 +1,10 @@
 import InfoCard from "@/components/InfoCard";
-import RevenueMetrics from "@/components/RevenueMetrics";
-
 import { FaRegUser } from "react-icons/fa";
-import TalentsPerformance from "@/components/dash/TalentsPerformance";
-import BookingTable from "@/components/dash/BookingTable";
-import TransactionTable from "@/components/dash/TransactionTable";
 import { IoMdTrendingUp, IoMdTrendingDown } from "react-icons/io";
+import TalentsPerformance from "@/components/dash/TalentsPerformance";
+import { Card, CardHeader } from "@/components/ui/card";
+import BookingTable from "@/components/bookings/BookingTable";
+import FilterDialog from '@/components/bookings/filterDialog';
 
 export default function Bookings() {
 	return (
@@ -48,4 +47,5 @@ export default function Bookings() {
 			</div>
 		</div>
 	);
+
 }
