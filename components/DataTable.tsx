@@ -11,12 +11,12 @@ import {
 } from "@tanstack/react-table";
 
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { rankItem } from "@tanstack/match-sorter-utils";
@@ -37,18 +37,21 @@ import { LiaSlidersHSolid } from "react-icons/lia";
 
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  title: string;
+	columns: ColumnDef<TData, TValue>[];
+	data: TData[];
+	title: string;
 }
+
 
 interface AboutPageQuery {
   name: string;
   age: string;
 }
 
+
+
 interface GlobalFilter {
-  globalFilter: any;
+	globalFilter: any;
 }
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   // Rank the item
@@ -62,12 +65,14 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 };
 
 export function DataTable<TData, TValue>({
-  columns,
-  data,
-  title,
+	columns,
+	data,
+	title,
 }: DataTableProps<TData, TValue>) {
+
   const router = useRouter();
   const [globalFilter, setGlobalFilter] = useState<string>("");
+
 
   const table = useReactTable({
     data,
@@ -90,6 +95,7 @@ export function DataTable<TData, TValue>({
     //    router.push(`/about?${queryString}`);
     router.push(`/bookings/34?data=${encodedData}`);
   };
+
 
   return (
     <div>
@@ -171,6 +177,7 @@ export function DataTable<TData, TValue>({
       </div>
     </div>
   );
+
 }
 
 export default DataTable;
