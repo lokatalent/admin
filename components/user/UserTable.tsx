@@ -1,5 +1,6 @@
 import { UserType, UserColumns } from "@/components/Columns";
 import { DataTable } from "@/components/DataTable";
+import { UserFilter } from "../FilterData";
 
 async function getData(): Promise<UserType[]> {
 	return [
@@ -123,6 +124,8 @@ export default async function UserTable() {
 				columns={UserColumns}
 				data={data}
 				title="User List"
+				type="users"
+				filterType={UserFilter}
 			/>
 		</div>
 	);
