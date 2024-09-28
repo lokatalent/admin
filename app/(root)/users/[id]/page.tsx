@@ -11,6 +11,9 @@ import booker from "@/assets/images/gabriel.png";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { FaRegUser } from "react-icons/fa";
+import { IoIosTimer } from "react-icons/io";
+import { IoReceiptOutline, IoWalletOutline } from "react-icons/io5";
 
 const UserDetails = ({ params }: { params: { id: string } }) => {
 	return (
@@ -73,11 +76,13 @@ const UserDetails = ({ params }: { params: { id: string } }) => {
 				<div className="flex space-x-12 my-8">
 					<div>
 						<h4 className="text-[12px] text-[#212121B2]">REGISTRATION DATE</h4>
-						<p className="mt-2 flex items-center">jamesscott@gmail.com</p>
+						<p className="mt-2 flex items-center">Jan-02-2023 09:20:52 AM</p>
 					</div>
 					<div>
 						<h4 className="text-[12px] text-[#212121B2]">LAST LOGIN</h4>
-						<p className="mt-2 flex items-center">Nigeria</p>
+						<p className="mt-2 flex items-center">
+							40 mins ago (Jan-31-2023 09:20:52 AM)
+						</p>
 					</div>
 				</div>
 
@@ -86,9 +91,36 @@ const UserDetails = ({ params }: { params: { id: string } }) => {
 				</Button>
 			</div>
 
-			<div className="card2 my-5">Bookings</div>
-			<div className="card2 my-5">User Activities</div>
-			<div className="card2 my-5">Transactions</div>
+			<div className="card2 my-5">
+				<div className="flex space-x-3 items-center">
+					<div
+						className="w-12 h-12 rounded-lg bg-orange-300 flex items-center justify-center"
+					>
+						<IoReceiptOutline color="#fff" />
+					</div>
+					<p> Bookings</p>
+				</div>
+			</div>
+			<div className="card2 my-5">
+				<div className="flex space-x-3 items-center">
+				<div
+						className="w-12 h-12 rounded-lg bg-orange-300 flex items-center justify-center"
+					>
+						<IoIosTimer color="#fff" size={25}/>
+					</div>
+					
+					<p> User Activities</p>
+				</div>
+			</div>
+			<div className="card2 my-5">
+				<div className="flex space-x-3 items-center">
+				<div className="w-12 h-12 rounded-lg bg-orange-300 flex items-center justify-center">
+						<IoWalletOutline color="#fff" />
+				</div>
+					
+					<p> Transactions</p>
+				</div>
+			</div>
 		</div>
 	);
 };
