@@ -6,6 +6,7 @@ import TalentsPerformance from "@/components/dash/TalentsPerformance";
 import BookingTable from "@/components/dash/BookingTable";
 import TransactionTable from "@/components/dash/TransactionTable";
 import { IoMdTrendingUp, IoMdTrendingDown } from "react-icons/io";
+import { IoReceiptOutline, IoWalletOutline } from "react-icons/io5";
 
 export default function Home() {
 	return (
@@ -14,7 +15,7 @@ export default function Home() {
 				<InfoCard
 					text="Active Bookings"
 					number={19}
-					icon={<FaRegUser color="#8E11F0" />}
+					icon={<IoWalletOutline color="#8E11F0" />}
 					iconColor="#8280FF87"
 					arrow={<IoMdTrendingUp color="#00B69B" />}
 					comment="Up from Yesterday"
@@ -34,7 +35,7 @@ export default function Home() {
 				<InfoCard
 					text="New Users"
 					number={19}
-					icon={<FaRegUser color="#D38005" />}
+					icon={<IoWalletOutline color="#D38005" />}
 					iconColor="#FFAC3399"
 					arrow={<IoMdTrendingUp color="#00B69B" />}
 					comment="Up from Yesterday"
