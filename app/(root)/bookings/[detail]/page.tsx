@@ -52,6 +52,7 @@ export default function Detail() {
 		setStatus(data);
 	}
 
+
 	// setData(decodedData);
 	//  useEffect(async () => {
 	//    console.log(encodedData)
@@ -64,6 +65,7 @@ export default function Detail() {
 	//      }
 	//    }
 	//  }, []);
+
 
 	return (
 		<div className="my-14">

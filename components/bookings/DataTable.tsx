@@ -1,77 +1,68 @@
 "use client";
 import React, { useState } from "react";
 import {
-	ColumnDef,
-	flexRender,
-	getCoreRowModel,
-	useReactTable,
-	ColumnFiltersState,
-	getFilteredRowModel,
-	FilterFn,
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  ColumnFiltersState,
+  getFilteredRowModel,
+  FilterFn,
 } from "@tanstack/react-table";
 
 import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { rankItem } from "@tanstack/match-sorter-utils";
 import { useRouter } from "next/navigation";
 import {
-
   Dialog,
   DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
-
 } from "@/components/ui/dialog";
 import { LiaSlidersHSolid } from "react-icons/lia";
-
 import FilterSelect from "./bookings/FilterSelect";
 
-
 interface DataTableProps<TData, TValue> {
-	columns: ColumnDef<TData, TValue>[];
-	data: TData[];
-	title: string;
-  type:string
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  title: string;
 }
 
 interface AboutPageQuery {
-	name: string;
-	age: string;
+  name: string;
+  age: string;
 }
 
 interface GlobalFilter {
-	globalFilter: any;
+  globalFilter: any;
 }
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
-	// Rank the item
-	const itemRank = rankItem(row.getValue(columnId), value);
+  // Rank the item
+  const itemRank = rankItem(row.getValue(columnId), value);
 
-	// Store the itemRank info
-	addMeta({ itemRank });
+  // Store the itemRank info
+  addMeta({ itemRank });
 
-	// Return if the item should be filtered in/out
-	return itemRank.passed;
+  // Return if the item should be filtered in/out
+  return itemRank.passed;
 };
 
 export function DataTable<TData, TValue>({
-	columns,
-	data,
-	title,
-  type
+  columns,
+  data,
+  title,
 }: DataTableProps<TData, TValue>) {
-
-
   const router = useRouter();
   const [globalFilter, setGlobalFilter] = useState<string>("");
-
 
   const table = useReactTable({
     data,
@@ -94,6 +85,7 @@ export function DataTable<TData, TValue>({
     //    router.push(`/about?${queryString}`);
     router.push(`/bookings/34?data=${encodedData}`);
   };
+
 
 
   return (
@@ -190,8 +182,6 @@ export function DataTable<TData, TValue>({
       </div>
     </div>
   );
-
-
 }
 
 export default DataTable;

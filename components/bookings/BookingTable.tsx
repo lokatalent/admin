@@ -56,11 +56,12 @@ async function getData(): Promise<BookingType[]> {
   ];
 }
 
-export default async function BookingTable() {
-	const data = await getData();
+export default async function BookingTable({ isHome }) {
+  const data = await getData();
 
-	return (
+  return (
     <div className="card my-5">
+
       <DataTable columns={BookingColumns} data={data} title="Bookings" type="bookings" />
      
     </div>
