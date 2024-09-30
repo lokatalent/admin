@@ -10,16 +10,25 @@ import {
   SelectGroup,
   SelectValue,
 } from "./ui/select"; 
-
-import booker from "../assets/images/gabriel.png";
-import bookee from "../assets/images/jayden.png";
 import Image from "next/image";
 import { TbCurrencyNaira } from "react-icons/tb";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { FaArrowLeft } from "react-icons/fa6";
-import { useState } from "react";
 import ContactDialog from "./ContactDialog";
 import { useRouter } from "next/navigation";
+
+interface DetailProps {
+  name: string;
+  status: string;
+  customer: { name: string; imageSrc: string };
+  talent: { name: string; imageSrc: string };
+  date: string;
+  time: string;
+  address: string;
+  serviceType: string;
+  bookingType: string;
+  amount: string;
+}
 
 
 
@@ -27,7 +36,7 @@ import { useRouter } from "next/navigation";
 
 // console.log(booker);
 
-export default function Detail({ name, status, customer , talent, date, time, address, serviceType, bookingType, amount}) {
+export default function Detail({ name, status, customer , talent, date, time, address, serviceType, bookingType, amount}: DetailProps ) {
     const router = useRouter();
 
 
@@ -36,7 +45,7 @@ export default function Detail({ name, status, customer , talent, date, time, ad
  }
 
   return (
-    <div className="mt-12">
+    <div className="mt-12 ml-8 sm:ml-0">
       <div>
         <div className="flex gap-3 items-center">
           <FaArrowLeft size={24} onClick={() => router.back()} />
@@ -57,35 +66,39 @@ export default function Detail({ name, status, customer , talent, date, time, ad
           <div className={`h-[7px] w-[7px] rounded-[100%] bg-primary `}></div>
           {status ? status : status}
         </div>
-        <div className="flex justify-between mt-8">
-          <div className="flex items-center gap-[1.5rem]">
-            <div className="flex gap-[1.5rem] items-center">
+        <div className="flex justify-between mt-8 flex-wrap flex-col gap-8  md:flex-col md:gap-8 lg:flex-row">
+          <div className="flex items-center gap-[1.4rem] flex-wrap">
+            <div className="flex gap-[1.4rem] items-center">
               <div className="w-[90px] h-[90px]">
                 <Image
-                  src={booker}
+                  src={talent.imageSrc}
                   alt=""
                   className="w-full h-full object-cover"
                 />
               </div>
               <div>
-                <h4>{customer}</h4>
+                <h4>{customer.name}</h4>
                 <div className="mt-3 flex items-center gap-2">
                   <div className="h-[7px] w-[7px] rounded-[100%] bg-[#115F04]"></div>
                   Customer
                 </div>
               </div>
             </div>
-            <div className="w-[100px] h-[1px] bg-red-500"></div>
-            <div className="flex gap-[1.5rem] items-center">
+            {/* <div className="w-[100px] h-[1px] bg-[hsla(36,100%,44%,1)]"></div> */}
+            <div className="relative w-[100px] h-[20px]">
+              <div className="absolute w-[100px] h-[2px] bg-orange-500 top-1/2 transform -translate-y-1/2"></div>
+              <div className="absolute w-[10px] h-[10px] bg-orange-500 rounded-full right-0 top-1/2 transform -translate-y-1/2"></div>
+            </div>
+            <div className="flex gap-[1.4rem] items-center">
               <div className="w-[90px] h-[90px]">
                 <Image
-                  src={bookee}
+                  src={talent.imageSrc}
                   alt=""
                   className="w-full h-full object-cover"
                 />
               </div>
               <div>
-                <h4>{talent}</h4>
+                <h4>{talent.name}</h4>
                 <div className="mt-3 flex items-center gap-2">
                   <div className="h-[7px] w-[7px] rounded-[100%] bg-[#115F04]"></div>
                   Talent
@@ -125,7 +138,7 @@ export default function Detail({ name, status, customer , talent, date, time, ad
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-1">
+        <div className="grid grid-cols-3 md:grid-cols-4 gap-4 md:gap-1">
           <div>
             <h4 className="text-[12px] text-[#212121B2]">Booking Type</h4>
             <p className="mt-2 flex items-center">{bookingType}</p>
@@ -156,15 +169,15 @@ export default function Detail({ name, status, customer , talent, date, time, ad
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div>
+        <div className="flex md:items-center gap-4 flex-col items-start md:flex-row">
+          <div className="self-strt">
             <h4 className="text-[12px]">Amount</h4>
             <p className="mt-3 flex items-center text-4xl text-[#DF8600] font-bold">
               <TbCurrencyNaira size={"2.25rem"} />
               {amount}
             </p>
           </div>
-          <div className="bg-primaryBlue p-6 text-white rounded-md">
+          <div className="bg-primaryBlue p-6 text-white rounded-md self-star">
             <div className="flex gap-2 items-center">
               <h4 className="text-[12px] text-[hsla(0,0%,100%,0.62)]">
                 Payment Status
@@ -180,10 +193,10 @@ export default function Detail({ name, status, customer , talent, date, time, ad
 
         <div className="flex">
           <ContactDialog
-            customerName={customer}
-            talentName={talent}
-            customerImage={bookee}
-            talentImage={booker}
+            customerName={customer.name}
+            talentName={talent.name}
+            customerImage={customer.imageSrc}
+            talentImage={talent.imageSrc}
           />
         </div>
       </div>

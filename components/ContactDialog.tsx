@@ -28,7 +28,7 @@ export default function ContactDialog({
       <DialogTrigger className="bg-primaryBlue px-6 py-5 text-white rounded-sm">
         Contact Customer/Talent
       </DialogTrigger>
-      <DialogContent className="w-full p-[3rem] sm:max-w-[30rem] lg:max-w-[40rem] xl:max-w-[40rem] 2xl:max-w-[40rem]">
+      <DialogContent className="w-full p-[3rem] sm:max-w-[30rem] lg:max-w-[40rem]">
         <DialogHeader>
           <DialogTitle className="text-center">Contact</DialogTitle>
         </DialogHeader>
