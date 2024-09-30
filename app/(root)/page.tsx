@@ -7,7 +7,47 @@ import BookingTable from "@/components/dash/BookingTable";
 import TransactionTable from "@/components/dash/TransactionTable";
 import { IoMdTrendingUp, IoMdTrendingDown } from "react-icons/io";
 
-export default function Home() {
+ type BookingType = {
+   id: string;
+   customer: string;
+   talent: string;
+   date: string;
+   time: string;
+   status: "Pending" | "Accepted" | "Declined";
+ };
+
+async function getData(): Promise<BookingType[]> {
+  return [
+    {
+      id: "12456256565",
+      customer: "Justin Cooper",
+      talent: "Gabriel Daramola",
+      date: "24/4/2024",
+      time: "11:45 AM",
+      status: "Pending",
+    },
+    {
+      id: "2565767900",
+      customer: "Martin Cooper",
+      talent: "Gabriel Daramola",
+      date: "24/4/2024",
+      time: "11:45 AM",
+      status: "Accepted",
+    },
+    {
+      id: "8698767900",
+      customer: "Jayden Cooper",
+      talent: "Gabriel Daramola",
+      date: "24/4/2024",
+      time: "11:45 AM",
+      status: "Declined",
+    }
+  ];
+}
+
+export default async function Home() {
+	const data = await getData();
+
 	return (
 		<div className="w-full  ">
 			<div className="flex flex-col md:flex-row space-y-3 md:space-y-0 justify-between w-full py-10  ">
@@ -44,7 +84,7 @@ export default function Home() {
 			</div>
 
 			<div>
-				<BookingTable isHome={true} />
+				<BookingTable isHome={true} data={data} />
 			</div>
 			<div>
 				<TransactionTable />

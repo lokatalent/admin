@@ -11,12 +11,12 @@ import {
 } from "@tanstack/react-table";
 
 import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { rankItem } from "@tanstack/match-sorter-utils";
@@ -29,24 +29,21 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { LiaSlidersHSolid } from "react-icons/lia";
-import FilterSelect from "./bookings/FilterSelect";
+import FilterSelect from "./FilterSelect";
+import SortList from "./SortList";
+import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {
-	columns: ColumnDef<TData, TValue>[];
-	data: TData[];
-	title: string;
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  title: string;
+  selectOptions: string[];
+  path: string;
+  filterList
 }
-
-
-interface AboutPageQuery {
-  name: string;
-  age: string;
-}
-
-
 
 interface GlobalFilter {
-	globalFilter: any;
+  globalFilter: any;
 }
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   // Rank the item
@@ -60,14 +57,18 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 };
 
 export function DataTable<TData, TValue>({
-	columns,
-	data,
-	title,
+  columns,
+  data,
+  title,
+  selectOptions,
+  path,
+  filterList
 }: DataTableProps<TData, TValue>) {
-
+  console.log(selectOptions);
   const router = useRouter();
   const [globalFilter, setGlobalFilter] = useState<string>("");
-
+  console.log(title);
+ 
 
   const table = useReactTable({
     data,
@@ -84,18 +85,18 @@ export function DataTable<TData, TValue>({
     onGlobalFilterChange: setGlobalFilter,
   });
 
-  const handleNavigate = (data: object) => {
-    console.log(data);
-    const encodedData = encodeURIComponent(JSON.stringify(data));
+  const handleNavigate = (id: number) => {
+    console.log(id)
     //    router.push(`/about?${queryString}`);
-    router.push(`/bookings/34?data=${encodedData}`);
+    // router.push(`/bookings/34?data=${encodedData}`);
+    router.push(`${path}/${id}`);
   };
-
 
   return (
     <div>
-      <div>
+      <div className="flex gap-5">
         <h1 className="font-medium text-2xl">{title}</h1>
+        <SortList options={selectOptions} />
       </div>
       <div className="flex items-center py-4 gap-2">
         <Input
@@ -126,9 +127,7 @@ export function DataTable<TData, TValue>({
               <DialogTitle className="text-center">Filters</DialogTitle>
             </DialogHeader>
             <div className="w-full gap-6 flex flex-col gap-[2rem]">
-              
-              <FilterSelect />
-              
+              <FilterSelect filterOptions={filterList} />
             </div>
           </DialogContent>
         </Dialog>
@@ -159,14 +158,16 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  onClick={() => handleNavigate(row.original)}
+                  onClick={() => handleNavigate(row.original.id)}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {/* <Link href={`/${linkTitle}/detail`}> */}
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      {/* </Link> */}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -186,7 +187,6 @@ export function DataTable<TData, TValue>({
       </div>
     </div>
   );
-
 }
 
 export default DataTable;

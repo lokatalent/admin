@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectGroup,
 } from "@/components/ui/select";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 import { IoClose } from "react-icons/io5";
 
 export type BookingType = {
@@ -14,62 +14,56 @@ export type BookingType = {
   options: string[];
 };
 
-const getData = [
-  {
-    name: "Booking Type",
-    options: ["Instant Booking", "Scheduled Booking"],
-  },
-  {
-    name: "Status",
-    options: ["Pending", "In Progress", "Completed", "Cancelled"],
-  },
-  {
-    name: "Service Type",
-    options: [
-      "Driving",
-      "Indoor Cleaning",
-      "Solar Installation",
-      "Electrical Cleaning",
-    ],
-  },
-  {
-    name: "Role",
-    options: ["Customer", "Talent"],
-  },
-];
 
-function FilterSelect() {
+
+function FilterSelect({ filterOptions }) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-//   const [checkSeen, setCheckSeen] = useState<boolean>([]);
+    const [checkSeen, setCheckSeen] = useState<boolean>(false);
+
+  const checkHandler = (value: string, forCheckArray: string[]) => {
+    console.log(value);
+    console.log('checking');
+    forCheckArray.forEach(check => {
+      if (check === value) {
+        console.log("checked");
+          setCheckSeen(true)
+      }
+     })
+  }
 
   // Helper function to handle selecting values
   const handleValueChange = (value: string, filterArray: string[]) => {
     console.log("Filter array:", filterArray);
+    console.log(value)
 
     setSelectedOptions((prevSelectedOptions) => {
       let newSelectedOptions = [...prevSelectedOptions];
 
       // Apply the logic from processArrays to update the arrays
-      const processArrays = (oldArray: string[], newArray: string[], newValue: string) => {
+      const processArrays = (
+        oldArray: string[],
+        newArray: string[],
+        newValue: string
+      ) => {
         let found = false;
 
         oldArray.forEach((item: string) => {
           const index = newArray.indexOf(item);
           if (index !== -1) {
             newArray.splice(index, 1);
-              newArray.push(newValue);
+            newArray.push(newValue);
             //   setCheckSeen(true)
-              console.log('check true')
+            console.log("check true");
             console.log(`Removed ${item} from newArray and added ${newValue}`);
             found = true;
           }
         });
 
-          if (!found) {
-            // setCheckSeen(false);
-              newArray.push(newValue);
-              console.log("check false  ");
-              
+        if (!found) {
+          // setCheckSeen(false);
+          newArray.push(newValue);
+          console.log("check false  ");
+
           console.log(`No matching item found. Added ${newValue} to newArray.`);
         }
 
@@ -82,11 +76,13 @@ function FilterSelect() {
         newSelectedOptions,
         value
       );
+      checkHandler(value, filterArray)
 
       return newSelectedOptions;
     });
   };
 
+  
 
   // Helper function to remove an option from selectedOptions
   const handleRemoveOption = (value: string) => {
@@ -125,7 +121,7 @@ function FilterSelect() {
 
       {/* Filters Section */}
       <div>
-        {getData.map((select, index) => (
+        {filterOptions.map((select, index) => (
           <div
             className="flex justify-between items-center w-full text-left"
             key={index}
@@ -146,8 +142,8 @@ function FilterSelect() {
                     {select.options.map((option, index) => (
                       <SelectItem
                         key={index}
-                            value={option}
-                            // value={}
+                        value={option}
+                        
                         className="bold leading-none text-violet11 hover:font-bold hover:text-[#3377FF] hover:bg-[#3377FF3D] rounded-[7px] flex items-center h-[35px]"
                       >
                         {option}
