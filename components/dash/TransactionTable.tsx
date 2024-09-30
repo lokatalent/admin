@@ -32,6 +32,8 @@ async function getData(): Promise<TransactionType[]> {
 	];
 }
 
+const options = ["Transactions", "Transactions", "Transactions", "Transactions"];
+
 export default async function TransactionTable() {
 	const data = await getData();
 
@@ -41,6 +43,7 @@ export default async function TransactionTable() {
 				columns={TransationColumns}
 				data={data}
 				title="Transactions"
+				selectOptions={options}
 			/>
 
 			<div className=" my-8 flex justify-center items-center">

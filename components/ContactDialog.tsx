@@ -16,13 +16,19 @@ interface ContactDialog {
   talentImage: string;
 }
 
-export default function ContactDialog({ customerName, customerImage, talentName, talentImage }: ContactDialog) {
+export default function ContactDialog({
+  customerName,
+  customerImage,
+  talentName,
+  talentImage,
+}: ContactDialog) {
+  
   return (
     <Dialog>
       <DialogTrigger className="bg-primaryBlue px-6 py-5 text-white rounded-sm">
         Contact Customer/Talent
       </DialogTrigger>
-      <DialogContent className="w-full p-[3rem] max-w-[40rem]">
+      <DialogContent className="w-full p-[3rem] sm:max-w-[30rem] lg:max-w-[40rem] xl:max-w-[40rem] 2xl:max-w-[40rem]">
         <DialogHeader>
           <DialogTitle className="text-center">Contact</DialogTitle>
         </DialogHeader>
