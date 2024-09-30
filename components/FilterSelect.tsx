@@ -6,7 +6,7 @@ import {
 	SelectItem,
 	SelectGroup,
 } from "@/components/ui/select";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 import { IoClose } from "react-icons/io5";
 
 
@@ -16,59 +16,61 @@ export type BookingType = {
 };
 
 
-
 function FilterSelect({filterType}) {
 	const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 	//   const [checkSeen, setCheckSeen] = useState<boolean>([]);
 
 	// Helper function to handle selecting values
 	const handleValueChange = (value: string, filterArray: string[]) => {
-		console.log("Filter array:", filterArray);
+    console.log("Filter array:", filterArray);
+    console.log(value)
 
-		setSelectedOptions((prevSelectedOptions) => {
-			let newSelectedOptions = [...prevSelectedOptions];
+    setSelectedOptions((prevSelectedOptions) => {
+      let newSelectedOptions = [...prevSelectedOptions];
 
-			// Apply the logic from processArrays to update the arrays
-			const processArrays = (
-				oldArray: string[],
-				newArray: string[],
-				newValue: string,
-			) => {
-				let found = false;
+      // Apply the logic from processArrays to update the arrays
+      const processArrays = (
+        oldArray: string[],
+        newArray: string[],
+        newValue: string
+      ) => {
+        let found = false;
 
-				oldArray.forEach((item: string) => {
-					const index = newArray.indexOf(item);
-					if (index !== -1) {
-						newArray.splice(index, 1);
-						newArray.push(newValue);
-						//   setCheckSeen(true)
-						console.log("check true");
-						console.log(`Removed ${item} from newArray and added ${newValue}`);
-						found = true;
-					}
-				});
+        oldArray.forEach((item: string) => {
+          const index = newArray.indexOf(item);
+          if (index !== -1) {
+            newArray.splice(index, 1);
+            newArray.push(newValue);
+            //   setCheckSeen(true)
+            console.log("check true");
+            console.log(`Removed ${item} from newArray and added ${newValue}`);
+            found = true;
+          }
+        });
 
-				if (!found) {
-					// setCheckSeen(false);
-					newArray.push(newValue);
-					console.log("check false  ");
+        if (!found) {
+          // setCheckSeen(false);
+          newArray.push(newValue);
+          console.log("check false  ");
 
-					console.log(`No matching item found. Added ${newValue} to newArray.`);
-				}
+          console.log(`No matching item found. Added ${newValue} to newArray.`);
+        }
 
-				return newArray;
-			};
+        return newArray;
+      };
 
-			// Process the arrays, using the current selected options and the filterArray
-			newSelectedOptions = processArrays(
-				filterArray,
-				newSelectedOptions,
-				value,
-			);
+      // Process the arrays, using the current selected options and the filterArray
+      newSelectedOptions = processArrays(
+        filterArray,
+        newSelectedOptions,
+        value
+      );
+      checkHandler(value, filterArray)
 
-			return newSelectedOptions;
-		});
-	};
+      return newSelectedOptions;
+    });
+  };
+
 
 	// Helper function to remove an option from selectedOptions
 	const handleRemoveOption = (value: string) => {
