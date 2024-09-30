@@ -3,6 +3,11 @@ import { DataTable } from "@/components/DataTable";
 import Link from "next/link";
 import { BookingOptions } from "../SortData";
 
+interface MyObject {
+  name: string;
+  options: string[];
+}
+
 async function getData(): Promise<BookingType[]> {
 	return [
 		{
@@ -57,7 +62,7 @@ async function getData(): Promise<BookingType[]> {
 	];
 }
 
-const getSelect = [
+const getSelect: MyObject[] = [
   {
     name: "Booking Type",
     options: ["Instant Booking", "Scheduled Booking"],
@@ -88,14 +93,13 @@ export default async function BookingTable({ isHome , data }: {isHome: boolean, 
 
 	return (
     <div className="card my-5">
-			<DataTable
-				// @ts-ignore
+      <DataTable
         columns={BookingColumns}
         data={data}
         title="Bookings"
         selectOptions={BookingOptions}
-				path='/bookings'
-				filterType={getSelect}
+        path="/bookings"
+        filterType={getSelect}
       />
 
       {isHome && (

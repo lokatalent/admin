@@ -33,17 +33,14 @@ import FilterSelect from "./FilterSelect";
 import SortList from "./SortList";
 import Link from "next/link";
 
-interface FilterType {
-	name: string;
-	options: string[];
-}
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   title: string;
   selectOptions: string[];
   path: string;
-  filterList
+  filterType: any;
 }
 
 interface GlobalFilter {
