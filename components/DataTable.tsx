@@ -107,87 +107,86 @@ export function DataTable<TData, TValue>({
           className="max-w-full h-12"
         />
 
-        <Dialog>
-          <DialogTrigger className="">
-            <div
-              className="w-12 h-12 rounded-lg"
-              style={{
-                backgroundColor: "#Fff",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                borderColor: "#E5E7EB",
-                borderWidth: "1px",
-              }}
-            >
-              <LiaSlidersHSolid size={24} />
-            </div>
-          </DialogTrigger>
-          <DialogContent className="w-full p-[3rem] py-[2rem] max-w-[26rem]">
-            <DialogHeader>
-              <DialogTitle className="text-center">Filters</DialogTitle>
-            </DialogHeader>
-            <div className="w-full gap-6 flex flex-col gap-[2rem]">
-              <FilterSelect filterType={filterType} />
-            </div>
-          </DialogContent>
-        </Dialog>
-      </div>
-      <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  );
-                })}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                  onClick={() => handleNavigate(row.original.id)}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {/* <Link href={`/${linkTitle}/detail`}> */}
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      {/* </Link> */}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
-    </div>
-  );
+				<Dialog>
+					<DialogTrigger className="">
+						<div
+							className="w-12 h-12 rounded-lg"
+							style={{
+								backgroundColor: "#Fff",
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								borderColor: "#E5E7EB",
+								borderWidth: "1px",
+							}}
+						>
+							<LiaSlidersHSolid size={24} />
+						</div>
+					</DialogTrigger>
+					<DialogContent className="w-full p-[3rem] py-[2rem] max-w-[26rem]">
+						<DialogHeader>
+							<DialogTitle className="text-center">Filters</DialogTitle>
+						</DialogHeader>
+						<div className="w-full gap-6 flex flex-col gap-[2rem]">
+							<FilterSelect filterType={filterType} />
+						</div>
+					</DialogContent>
+				</Dialog>
+			</div>
+			<div className="rounded-md border">
+				<Table>
+					<TableHeader>
+						{table.getHeaderGroups().map((headerGroup) => (
+							<TableRow key={headerGroup.id}>
+								{headerGroup.headers.map((header) => {
+									return (
+										<TableHead key={header.id}>
+											{header.isPlaceholder
+												? null
+												: flexRender(
+														header.column.columnDef.header,
+														header.getContext(),
+												  )}
+										</TableHead>
+									);
+								})}
+							</TableRow>
+						))}
+					</TableHeader>
+					<TableBody>
+						{table.getRowModel().rows?.length ? (
+							table.getRowModel().rows.map((row) => (
+								<TableRow
+									key={row.id}
+									className="hover:bg-slate-200 focus:bg-slate-200" 
+									data-state={row.getIsSelected() && "selected"}
+									onClick={() => handleNavigate(row.original)}
+								>
+									{row.getVisibleCells().map((cell) => (
+										<TableCell key={cell.id}>
+											{flexRender(
+												cell.column.columnDef.cell,
+												cell.getContext(),
+											)}
+										</TableCell>
+									))}
+								</TableRow>
+							))
+						) : (
+							<TableRow>
+								<TableCell
+									colSpan={columns.length}
+									className="h-24 text-center "
+								>
+									No results.
+								</TableCell>
+							</TableRow>
+						)}
+					</TableBody>
+				</Table>
+			</div>
+		</div>
+	);
 }
 
 export default DataTable;
