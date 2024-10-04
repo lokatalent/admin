@@ -11,12 +11,12 @@ import {
 } from "@tanstack/react-table";
 
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { rankItem } from "@tanstack/match-sorter-utils";
@@ -33,18 +33,17 @@ import FilterSelect from "./FilterSelect";
 import SortList from "./SortList";
 import Link from "next/link";
 
-
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  title: string;
-  selectOptions: string[];
-  path: string;
-  filterType: any;
+	columns: ColumnDef<TData, TValue>[];
+	data: TData[];
+	title: string;
+	selectOptions: string[];
+	path: string;
+	filterType: any;
 }
 
 interface GlobalFilter {
-  globalFilter: any;
+	globalFilter: any;
 }
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 	// Rank the item
@@ -58,54 +57,52 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 };
 
 export function DataTable<TData, TValue>({
-  columns,
-  data,
-  title,
-  selectOptions,
-  path,
-  filterType
+	columns,
+	data,
+	title,
+	selectOptions,
+	path,
+	filterType,
 }: DataTableProps<TData, TValue>) {
-  console.log(selectOptions);
-  const router = useRouter();
-  const [globalFilter, setGlobalFilter] = useState<string>("");
-  console.log(title);
- 
+	const router = useRouter();
+	const [globalFilter, setGlobalFilter] = useState<string>("");
 
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    filterFns: {
-      fuzzy: fuzzyFilter, //define as a filter function that can be used in column definitions
-    },
-    globalFilterFn: "fuzzy",
-    state: {
-      globalFilter,
-    },
-    onGlobalFilterChange: setGlobalFilter,
-  });
+	const table = useReactTable({
+		data,
+		columns,
+		getCoreRowModel: getCoreRowModel(),
+		getFilteredRowModel: getFilteredRowModel(),
+		filterFns: {
+			fuzzy: fuzzyFilter, //define as a filter function that can be used in column definitions
+		},
+		globalFilterFn: "fuzzy",
+		state: {
+			globalFilter,
+		},
+		onGlobalFilterChange: setGlobalFilter,
+	});
 
-  const handleNavigate = (id: number) => {
-    console.log(id)
-    //    router.push(`/about?${queryString}`);
-    // router.push(`/bookings/34?data=${encodedData}`);
-    router.push(`${path}/${id}`);
-  };
+	const handleNavigate = (data: string[]) => {
+		console.log("ID", data.id);
+		console.log("PATH", path);
+		//    router.push(`/about?${queryString}`);
+		// router.push(`/bookings/34?data=${encodedData}`);
+		router.push(`${path}/${data.id}`);
+	};
 
-  return (
-    <div>
-      <div className="flex gap-5">
-        <h1 className="font-medium text-2xl">{title}</h1>
-        <SortList options={selectOptions} />
-      </div>
-      <div className="flex items-center py-4 gap-2">
-        <Input
-          placeholder="Search by order id, name of customer "
-          value={globalFilter}
-          onChange={(e) => table.setGlobalFilter(String(e.target.value))}
-          className="max-w-full h-12"
-        />
+	return (
+		<div>
+			<div className="flex gap-5">
+				<h1 className="font-medium text-2xl">{title}</h1>
+				<SortList options={selectOptions} />
+			</div>
+			<div className="flex items-center py-4 gap-2">
+				<Input
+					placeholder="Search by order id, name of customer "
+					value={globalFilter}
+					onChange={(e) => table.setGlobalFilter(String(e.target.value))}
+					className="max-w-full h-12"
+				/>
 
 				<Dialog>
 					<DialogTrigger className="">
@@ -158,7 +155,7 @@ export function DataTable<TData, TValue>({
 							table.getRowModel().rows.map((row) => (
 								<TableRow
 									key={row.id}
-									className="hover:bg-slate-200 focus:bg-slate-200" 
+									className="hover:bg-slate-200 focus:bg-slate-200"
 									data-state={row.getIsSelected() && "selected"}
 									onClick={() => handleNavigate(row.original)}
 								>
