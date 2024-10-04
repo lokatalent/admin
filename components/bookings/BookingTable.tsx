@@ -1,4 +1,4 @@
-import { BookingType, BookingColumns } from "@/components/Columns";
+import { BookingType, BookingColumns } from "@/components/columns/Columns";
 import { BookingFilter } from "@/components/FilterData";
 import { DataTable } from "@/components/DataTable";
 

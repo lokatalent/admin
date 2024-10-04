@@ -1,4 +1,4 @@
-import { UserType, UserColumns } from "@/components/Columns";
+import { UserType, UserColumns } from "@/components/columns/UserColumns";
 import { DataTable } from "@/components/DataTable";
 import { UserFilter } from "../FilterData";
 import { UserOptions } from "../SortData";
