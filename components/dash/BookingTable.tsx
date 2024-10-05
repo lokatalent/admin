@@ -2,6 +2,7 @@ import { BookingType, BookingColumns } from "@/components/columns/Columns";
 import { DataTable } from "@/components/DataTable";
 import Link from "next/link";
 import { BookingOptions } from "../SortData";
+import { BookingFilter } from "../FilterData";
 
 interface MyObject {
   name: string;
@@ -17,6 +18,7 @@ async function getData(): Promise<BookingType[]> {
 			date: "24/4/2024",
 			time: "11:45 AM",
 			status: "Pending",
+			service: 'Indoor Cleaning',
 		},
 		{
 			id: "2565767900",
@@ -25,6 +27,7 @@ async function getData(): Promise<BookingType[]> {
 			date: "24/4/2024",
 			time: "11:45 AM",
 			status: "Accepted",
+			service: 'Indoor Cleaning',
 		},
 		{
 			id: "8698767900",
@@ -33,6 +36,7 @@ async function getData(): Promise<BookingType[]> {
 			date: "24/4/2024",
 			time: "11:45 AM",
 			status: "Declined",
+			service: 'Indoor Cleaning',
 		},
 		{
 			id: "12456256565",
@@ -41,6 +45,7 @@ async function getData(): Promise<BookingType[]> {
 			date: "24/4/2024",
 			time: "11:45 AM",
 			status: "Pending",
+			service: 'Indoor Cleaning',
 		},
 		{
 			id: "2565767900",
@@ -49,6 +54,7 @@ async function getData(): Promise<BookingType[]> {
 			date: "24/4/2024",
 			time: "11:45 AM",
 			status: "Accepted",
+			service: 'Indoor Cleaning',
 		},
 		{
 			id: "8698767900",
@@ -57,34 +63,13 @@ async function getData(): Promise<BookingType[]> {
 			date: "24/4/2024",
 			time: "11:45 AM",
 			status: "Declined",
+			service: 'Indoor Cleaning',
 		},
 		// ...
 	];
 }
 
-const getSelect: MyObject[] = [
-  {
-    name: "Booking Type",
-    options: ["Instant Booking", "Scheduled Booking"],
-  },
-  {
-    name: "Status",
-    options: ["Pending", "In Progress", "Completed", "Cancelled"],
-  },
-  {
-    name: "Service Type",
-    options: [
-      "Driving",
-      "Indoor Cleaning",
-      "Solar Installation",
-      "Electrical Cleaning",
-    ],
-  },
-  {
-    name: "Role",
-    options: ["Customer", "Talent"],
-  },
-];
+
 
 
 
@@ -99,7 +84,7 @@ export default async function BookingTable({ isHome , data }: {isHome: boolean, 
         title="Bookings"
         selectOptions={BookingOptions}
         path="/bookings"
-        filterType={getSelect}
+        filterType={BookingFilter}
         isSort={true}
         isRole={false}
         isReport={false}

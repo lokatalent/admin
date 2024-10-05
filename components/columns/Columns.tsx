@@ -6,6 +6,7 @@ export type BookingType = {
 	id: string;
 	customer: string;
 	talent: string;
+	service: string;
 	date: string;
 	time: string;
 	status: "Pending" | "Accepted" | "Declined";
@@ -23,52 +24,50 @@ export type TransactionType = {
 
 // COLUMNS
 export const BookingColumns: ColumnDef<BookingType>[] = [
-	{
-		accessorKey: "id",
-		header: "Booking ID",
-	},
-	
-	{
-		accessorKey: "talent",
-		header: "Talent",
-	},
+  {
+    accessorKey: "id",
+    header: "Booking ID",
+  },
+  {
+    accessorKey: "customer",
+    header: "Customer",
+  },
+  {
+    accessorKey: "talent",
+    header: "Talent",
+  },
 
-	{
-		accessorKey: "location",
-		header: "Location",
-	},
+  {
+    accessorKey: "date",
+    header: "Date",
+  },
+  {
+    accessorKey: "time",
+    header: "Time",
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => {
+      const status = row.getValue("status");
 
-	{
-		accessorKey: "date",
-		header: "Date",
-	},
-	{
-		accessorKey: "time",
-		header: "Time",
-	},
-	{
-		accessorKey: "status",
-		header: "Status",
-		cell: ({ row }) => {
-			const status = row.getValue("status");
-
-			return (
-				<div className="flex items-center">
-					<p
-						className={`px-2 py-2 flex items-center justify-center w-[122px] rounded-md text-sm font-medium ${
-							status === "Accepted"
-								? "bg-accept "
-								: status === "Pending"
-								? "bg-yellow "
-								: "bg-red-100 "
-						}`}
-					>
-						{status}
-					</p>
-				</div>
-			);
-		},
-	},
+      return (
+        <div className="flex items-center">
+          <p
+            className={`px-2 py-2 flex items-center justify-center w-[122px] rounded-md text-sm font-medium ${
+              status === "Accepted"
+                ? "bg-accept "
+                : status === "Pending"
+                ? "bg-yellow "
+                : "bg-red-100 "
+            }`}
+          >
+            {status}
+          </p>
+        </div>
+      );
+    },
+  },
 ];
 
 
