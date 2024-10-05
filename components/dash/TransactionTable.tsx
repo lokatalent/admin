@@ -1,4 +1,4 @@
-import { TransactionType, TransationColumns } from "@/components/columns/Columns";
+import {  TransactionType, TransactionColumns } from "../columns/Columns";
 import { DataTable } from "@/components/DataTable";
 import Link from "next/link";
 import { TransactionOptions } from "../SortData";
@@ -41,7 +41,7 @@ export default async function TransactionTable() {
 	return (
 		<div className="card my-5">
 			<DataTable
-				columns={TransationColumns}
+				columns={TransactionColumns}
 				data={data}
 				title="Transactions"
 				selectOptions={TransactionOptions}

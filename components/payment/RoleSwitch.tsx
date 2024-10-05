@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from "next/link";
+import { Button } from '../ui/button';
 // import { usePathname } from "next/navigation";
 
 
@@ -11,12 +12,12 @@ function RoleSwitch() {
     return (
       <div className="flex bg-[#E5E7EB4A] px-5 py-4">
         <div className=" ">
-          <Link
-            href="/payments/customers"
-            className={`px-3 py-2 rounded-md bg-primaryBlue text-white"`}
+          <Button
+            // href="/payments/customers"
+            className={`px-3 py-2 rounded-md bg-primaryBlue text-white hover:text-white`}
           >
             Customers
-          </Link>
+          </Button>
         </div>
         <div className="">
           <Link
