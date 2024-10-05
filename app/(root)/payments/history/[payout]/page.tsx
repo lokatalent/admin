@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { DataTable } from "@/components/DataTable";
-import { PayoutColumns, PayoutType } from "@/components/columns/UserColumns";
+import { PayoutColumns, PayoutType } from "../../../../../components/columns/UserColumns";
 import view from "../../../../../assets/images/view.png";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -21,6 +21,9 @@ async function getData(): Promise<PayoutType[]> {
       amount: "15,000",
       bank: "Zenith Bank",
       time: "11:15 AM",
+      accountNumber: "1234554321",
+      name: "Gabriel Dara   mola",
+      role: 'Indoor cleaner',
       status: "Successful",
     },
     {
@@ -30,6 +33,9 @@ async function getData(): Promise<PayoutType[]> {
       amount: "15,000",
       bank: "Zenith Bank",
       time: "11:15 AM",
+      accountNumber: "1234554321",
+      name: "Gabriel Daramola",
+      role: 'Indoor cleaner',
       status: "Failed",
     },
     {
@@ -39,6 +45,9 @@ async function getData(): Promise<PayoutType[]> {
       amount: "15,000",
       bank: "Zenith Bank",
       time: "11:15 AM",
+      accountNumber: "1234554321",
+      name: "Gabriel Daramola",
+      role: 'Indoor cleaner',
       status: "Successful",
     },
     {
@@ -48,6 +57,9 @@ async function getData(): Promise<PayoutType[]> {
       amount: "15,000",
       bank: "Zenith Bank",
       time: "11:15 AM",
+      accountNumber: "1234554321",
+      name: "Gabriel Daramola",
+      role: 'Indoor cleaner',
       status: "Failed",
     },
     {
@@ -57,6 +69,9 @@ async function getData(): Promise<PayoutType[]> {
       amount: "15,000",
       bank: "Zenith Bank",
       time: "11:15 AM",
+      accountNumber: "1234554321",
+      name: "Gabriel Daramola",
+      role: 'Indoor cleaner',
       status: "Failed",
     },
     {
@@ -66,6 +81,9 @@ async function getData(): Promise<PayoutType[]> {
       amount: "15,000",
       bank: "Zenith Bank",
       time: "11:15 AM",
+      accountNumber: "1234554321",
+      name: "Gabriel Daramola",
+      role: 'Indoor cleaner',
       status: "Successful",
     },
     {
@@ -75,6 +93,9 @@ async function getData(): Promise<PayoutType[]> {
       amount: "15,000",
       bank: "Zenith Bank",
       time: "11:15 AM",
+      accountNumber: "1234554321",
+      name: "Gabriel Daramola",
+      role: 'Indoor cleaner',
       status: "Successful",
     },
     {
@@ -84,6 +105,9 @@ async function getData(): Promise<PayoutType[]> {
       amount: "15,000",
       bank: "Zenith Bank",
       time: "11:15 AM",
+      accountNumber: "1234554321",
+      name: "Gabriel Daramola",
+      role: 'Indoor cleaner',
       status: "Failed",
     },
   ];
@@ -156,7 +180,7 @@ export default function Payout() {
           data={data}
           title="Payout History"
           selectOptions={[]}
-          path="/payments/history"
+          path=""
           filterType={[]}
           isSort={false}
           isRole={false}

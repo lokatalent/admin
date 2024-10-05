@@ -44,7 +44,6 @@ interface DataTableProps<TData, TValue> {
   isRole: boolean;
   isReport: boolean;
 }
-
 interface GlobalFilter {
 	globalFilter: any;
 }
@@ -72,6 +71,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const router = useRouter();
   const [globalFilter, setGlobalFilter] = useState<string>("");
+  const [role, setRole] = useState<boolean>(false);
 
   const table = useReactTable({
     data,
@@ -95,6 +95,7 @@ export function DataTable<TData, TValue>({
     console.log(path);
     router.push(`${path}/${id}`);
   };
+  
 
   return (
     <div>
@@ -172,7 +173,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  onClick={() => handleNavigate(row.original.id)}
+                  onClick={() => path.length > 0 ? handleNavigate(row.original.id) : undefined }
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

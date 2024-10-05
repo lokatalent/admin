@@ -6,8 +6,10 @@ import PaymentTable from "./PaymentTable";
 import { PiClockCountdown } from "react-icons/pi";
 import { RiArrowRightSFill } from "react-icons/ri";
 import Link from "next/link";
+import { column } from "../columns/UserColumns";
 
 const Payments = () => {
+
   return (
     <div>
       <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 w-full py-10 gap-6 ">
