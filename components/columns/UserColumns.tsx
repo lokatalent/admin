@@ -11,6 +11,7 @@ export type BookingType = {
   talent: string;
   date: string;
   time: string;
+  serviceType: string;
   status: "Pending" | "Accepted" | "Declined";
 };
 export type TransactionType = {
@@ -70,7 +71,7 @@ export const BookingColumns: ColumnDef<BookingType>[] = [
   },
   {
     accessorKey: "talent",
-    header: "Talent",
+    header: "Talenst",
   },
 
   {
@@ -78,8 +79,8 @@ export const BookingColumns: ColumnDef<BookingType>[] = [
     header: "Date",
   },
   {
-    accessorKey: "time",
-    header: "Time",
+    accessorKey: "serviceType",
+    header: "service Type",
   },
   {
     accessorKey: "status",

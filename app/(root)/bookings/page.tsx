@@ -2,15 +2,9 @@ import InfoCard from "@/components/InfoCard";
 import { FaRegUser } from "react-icons/fa";
 import { IoMdTrendingUp, IoMdTrendingDown } from "react-icons/io";
 import BookingTable from "@/components/dash/BookingTable";
+import { BookingType } from "@/components/columns/UserColumns";
 
- type BookingType = {
-  id: string;
-  customer: string;
-  talent: string;
-  date: string;
-  time: string;
-  status: "Pending" | "Accepted" | "Declined";
-};
+
 
 async function getData(): Promise<BookingType[]> {
   return [
@@ -21,6 +15,7 @@ async function getData(): Promise<BookingType[]> {
       date: "24/4/2024",
       time: "11:45 AM",
       status: "Pending",
+      serviceType: "Indoor Cleaning",
     },
     {
       id: "2565767900",
@@ -29,6 +24,7 @@ async function getData(): Promise<BookingType[]> {
       date: "24/4/2024",
       time: "11:45 AM",
       status: "Accepted",
+      serviceType: "Indoor Cleaning",
     },
     {
       id: "8698767900",
@@ -37,6 +33,7 @@ async function getData(): Promise<BookingType[]> {
       date: "24/4/2024",
       time: "11:45 AM",
       status: "Declined",
+      serviceType: "Indoor Cleaning",
     },
     {
       id: "12456256565",
@@ -45,6 +42,7 @@ async function getData(): Promise<BookingType[]> {
       date: "24/4/2024",
       time: "11:45 AM",
       status: "Pending",
+      serviceType: "Indoor Cleaning",
     },
     {
       id: "2565767900",
@@ -53,6 +51,7 @@ async function getData(): Promise<BookingType[]> {
       date: "24/4/2024",
       time: "11:45 AM",
       status: "Accepted",
+      serviceType: "Indoor Cleaning",
     },
     {
       id: "8698767900",
@@ -61,6 +60,7 @@ async function getData(): Promise<BookingType[]> {
       date: "24/4/2024",
       time: "11:45 AM",
       status: "Declined",
+      serviceType: "Indoor Cleaning",
     },
     // ...
   ];
