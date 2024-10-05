@@ -71,16 +71,15 @@ export const BookingColumns: ColumnDef<BookingType>[] = [
   },
   {
     accessorKey: "talent",
-    header: "Talenst",
-  },
-
-  {
-    accessorKey: "date",
-    header: "Date",
+    header: "Talent",
   },
   {
     accessorKey: "serviceType",
     header: "service Type",
+  },
+  {
+    accessorKey: "date",
+    header: "Date",
   },
   {
     accessorKey: "status",

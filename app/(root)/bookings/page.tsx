@@ -1,8 +1,8 @@
 import InfoCard from "@/components/InfoCard";
 import { FaRegUser } from "react-icons/fa";
 import { IoMdTrendingUp, IoMdTrendingDown } from "react-icons/io";
-import BookingTable from "@/components/dash/BookingTable";
 import { BookingType } from "@/components/columns/UserColumns";
+import BookingTable from "@/components/bookings/BookingTable";
 
 
 
