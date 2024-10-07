@@ -1,4 +1,4 @@
-import { PaymentType, TransactionColumns } from "@/components/Columns";
+import { PaymentType, TransationColumns } from "@/components/columns/Columns";
 import { DataTable } from "@/components/DataTable";
 import { PaymentFilter } from "../FilterData";
 import { TransactionOptions} from "../SortData";
@@ -242,7 +242,7 @@ export default async function PaymentTable() {
   return (
     <div className="card my-5">
       <DataTable
-        columns={TransactionColumns}
+        columns={TransationColumns}
         data={data}
         title="Transactions"
         selectOptions={TransactionOptions}

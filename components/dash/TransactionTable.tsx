@@ -1,4 +1,4 @@
-import {  TransactionType, TransationColumns } from "@/components/Columns";
+import { TransactionType, TransationColumns } from "@/components/columns/Columns";
 import { DataTable } from "@/components/DataTable";
 import Link from "next/link";
 import { TransactionOptions } from "../SortData";

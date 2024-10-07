@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { DataTable } from "@/components/DataTable";
-import { PayoutColumns, PayoutType } from "@/components/Columns";
+import { PayoutColumns, PayoutType } from "@/components/columns/UserColumns";
 import view from "../../../../../assets/images/view.png";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
