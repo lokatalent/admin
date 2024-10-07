@@ -60,14 +60,16 @@ export default async function BookingTable({ isHome }) {
 	const data = await getData();
 
 	return (
-		<div className="card my-5">
-			<DataTable
-				columns={BookingColumns}
-				data={data}
-				title="Bookings"
-				type="bookings"
-				filterType={BookingFilter}
-			/>
-		</div>
-	);
+    <div className="card my-5">
+      <DataTable
+        columns={BookingColumns}
+        data={data}
+        title="Bookings"
+        type="bookings"
+        filterType={BookingFilter}
+        isSort={true}
+        isRole={false}
+      />
+    </div>
+  );
 }

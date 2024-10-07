@@ -5,3 +5,9 @@ export const BookingOptions = [
   "Instant Bookings",
   "Schedule Bookings",
 ];
+export const TransactionOptions = [
+  "Transactions",
+  "Transactions",
+  "Transactions",
+  "Transactions",
+];

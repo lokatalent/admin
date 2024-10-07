@@ -1,6 +1,7 @@
-import { TransactionType, TransationColumns } from "@/components/columns/Columns";
+import {  TransactionType, TransationColumns } from "@/components/Columns";
 import { DataTable } from "@/components/DataTable";
 import Link from "next/link";
+import { TransactionOptions } from "../SortData";
 
 async function getData(): Promise<TransactionType[]> {
 	return [
@@ -32,10 +33,10 @@ async function getData(): Promise<TransactionType[]> {
 	];
 }
 
-const options = ["Transactions", "Transactions", "Transactions", "Transactions"];
+
 
 export default async function TransactionTable() {
-	const data = await getData();
+	const data: TransactionType[] = await getData();
 
 	return (
 		<div className="card my-5">
@@ -43,7 +44,7 @@ export default async function TransactionTable() {
 				columns={TransationColumns}
 				data={data}
 				title="Transactions"
-				selectOptions={options}
+				selectOptions={TransactionOptions}
 			/>
 
 			<div className=" my-8 flex justify-center items-center">

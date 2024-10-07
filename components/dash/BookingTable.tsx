@@ -100,6 +100,9 @@ export default async function BookingTable({ isHome , data }: {isHome: boolean, 
         selectOptions={BookingOptions}
         path="/bookings"
         filterType={getSelect}
+        isSort={true}
+        isRole={false}
+        isReport={false}
       />
 
       {isHome && (
