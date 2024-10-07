@@ -94,7 +94,7 @@ function FilterSelect({filterType}) {
 					</Button>
 				</div>
 				<div className="flex items-center gap-3 flex-wrap">
-					{selectedOptions.map((name, index) => (
+					{selectedOptions?.map((name, index) => (
 						<Button
 							key={index}
 							className="bg-primaryBlue px-3 py-3 text-white rounded-sm flex items-center gap-3 self-center w-max"

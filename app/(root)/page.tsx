@@ -7,6 +7,7 @@ import BookingTable from "@/components/dash/BookingTable";
 import TransactionTable from "@/components/dash/TransactionTable";
 import { IoMdTrendingUp, IoMdTrendingDown } from "react-icons/io";
 import { IoReceiptOutline, IoWalletOutline } from "react-icons/io5";
+import PaymentTable from "@/components/payment/PaymentTable";
 
  type BookingType = {
    id: string;
@@ -88,7 +89,8 @@ export default async function Home() {
 				<BookingTable isHome={true} data={data} />
 			</div>
 			<div>
-				<TransactionTable />
+				{/* <TransactionTable /> */}
+				<PaymentTable />
 			</div>
 		</div>
 	);

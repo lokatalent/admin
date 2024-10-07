@@ -31,3 +31,14 @@ export const UserFilter = [
 		options: ["Pending", "In Progress", "Completed", "Cancelled"],
 	},
 ];
+
+export const PaymentFilter = [
+	{
+		name: "Payment",
+		options: ["Customer", "Talent"],
+	},
+	{
+		name: "Account Status",
+		options: ["Pending", "Successful", "Failed"],
+	},
+];

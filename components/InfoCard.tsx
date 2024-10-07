@@ -9,7 +9,7 @@ interface CardProp {
 	text: string;
 	iconColor: string;
 	icon: React.ReactNode;
-	number: number;
+	number: number | string;
 	arrow: React.ReactNode;
 	percent: number;
 	comment: string;
@@ -46,7 +46,7 @@ const InfoCard = ({
 					</div>
 				</div>
 				<div
-					className="w-12 h-12 rounded-lg"
+					className="w-12 h-12 rounded-[1rem]"
 					style={{
 						backgroundColor: iconColor,
 						display: "flex",

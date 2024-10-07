@@ -128,8 +128,11 @@ export default async function UserTable() {
         data={data}
         title="User List"
         selectOptions={UserOptions}
-			  path="/users"
-			  filterType={UserFilter}
+        path="/users"
+        filterType={UserFilter}
+        isSort={true}
+        isRole={false}
+        isReport={false}
       />
     </div>
   );

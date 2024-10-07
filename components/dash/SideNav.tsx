@@ -4,13 +4,13 @@ import {
 	IoGridOutline,
 	IoReceiptOutline,
 	IoWalletOutline,
-	IoPieChartOutline,
+	// IoPieChartOutline,
 	IoSettingsOutline,
 } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
-import { RiExchange2Line } from "react-icons/ri";
+// import { RiExchange2Line } from "react-icons/ri";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+
 
 const links = [
 	{

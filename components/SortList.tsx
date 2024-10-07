@@ -26,7 +26,7 @@ const SortList = ({ options }: SortProp) => {
           <p>Sort by: </p>
           <p className="mr-2">All</p>
         </div>
-      </SelectTrigger>
+      </SelectTrigger>  
       <SelectContent>
         <SelectGroup>
           {options?.map((option: string, index: number) => (
