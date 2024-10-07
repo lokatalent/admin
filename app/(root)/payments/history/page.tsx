@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { DataTable } from "@/components/DataTable";
-import { HistoryColumns, HistoryType } from "@/components/Columns";
+import { HistoryColumns, HistoryType } from "@/components/columns/UserColumns";
 import view from "../../../../assets/images/view.png";
 import { useRouter } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa";
