@@ -23,10 +23,10 @@
 	}
 
 	.btnOne {
-		@apply bg-primaryBlue hover:bg-blue-700 text-white w-full  md:w-[339px] p-8 text-lg;
+		@apply bg-primaryBlue hover:bg-blue-700 text-white w-full   p-8 text-lg;
 	}
 	.btnTwo {
-		@apply bg-bgWhite hover:bg-blue-100 text-primaryBlue w-full  md:w-[339px]  p-8 text-lg;
+		@apply bg-bgWhite hover:bg-blue-100 text-primaryBlue w-full border border-primaryBlue   p-8 text-lg;
 	}
 	.card {
 		@apply shadow-lg p-12  border border-neutral-50 rounded-lg bg-white;

@@ -87,12 +87,9 @@ export function DataTable<TData, TValue>({
     },
     onGlobalFilterChange: setGlobalFilter,
   });
-  console.log(path)
   const handleNavigate = (id: number) => {
-    console.log(id);
     //    router.push(`/about?${queryString}`);
     // router.push(`/bookings/34?data=${encodedData}`);
-    console.log(path);
     router.push(`${path}/${id}`);
   };
   

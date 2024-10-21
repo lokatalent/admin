@@ -24,9 +24,11 @@ interface UserDetailsProps {
 	};
 }
 
-
 const UserDetails: React.FC<UserDetailsProps> = ({ params }) => {
 	const router = useRouter();
+	const goToBookings = () => {
+		router.push(`/users/${params.id}/user-bookings`);
+	};
 
 	return (
 		<div className="py-14">
@@ -36,12 +38,12 @@ const UserDetails: React.FC<UserDetailsProps> = ({ params }) => {
 				</Link>
 				<p className="text-2xl font-semibold">User Details</p>
 			</div>
-			
+
 			<UserDetailsCard />
 
 			<div
-				className="card2 my-5"
-				
+				className="card2 my-5 focus:bg-gray-200"
+				onClick={goToBookings}
 			>
 				<div className="flex space-x-3 items-center">
 					<div className="w-12 h-12 rounded-lg bg-orange-300 flex items-center justify-center">

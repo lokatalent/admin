@@ -7,7 +7,7 @@ import { Button } from '../ui/button';
 
 function RoleSwitch() {
     // const pathname = usePathname();
-    // console.log(pathname);
+   
 
     return (
       <div className="flex bg-[#E5E7EB4A] px-5 py-4">

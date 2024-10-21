@@ -71,9 +71,9 @@ export default async function UserBookings() {
 		<div className="py-14">
 			<div className="flex flex-row space-x-3 items-center">
 				<Link href="/users">
-					<a>
+					
 						<IoIosArrowRoundBack size={24} />
-					</a>
+					
 				</Link>
 				<h2 className="text-2xl font-semibold">User Details</h2>
 			</div>

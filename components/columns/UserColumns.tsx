@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { TbCurrencyNaira } from "react-icons/tb";
 import PaymentDetails from "../payment/PaymentDetails";
+
+import type { date } from "zod";
 export type BookingType = {
   id: string;
   customer: string;
@@ -60,6 +62,15 @@ export type PayoutType = {
   role: string;
   name: string;
 };
+
+export type UserBookingType = {
+	id: string;
+	talent: string;
+	location: string;
+	date: string;
+	time: string;
+	status: "Pending" | "Accepted" | "Declined";
+};
 export const BookingColumns: ColumnDef<BookingType>[] = [
   {
     accessorKey: "id",
@@ -111,7 +122,7 @@ export const TransactionColumns: ColumnDef<PaymentType>[] = [
     header: "Transaction ID",
     cell: ({ row }) => {
       const nameData = row.original; // The whole row's data
-      // console.log(nameData);
+     
       return (
         <div className="flex items-center space-x-2">
           {/* <Link
@@ -206,7 +217,7 @@ export const TransactionColumns: ColumnDef<PaymentType>[] = [
 //   },
 //   ]
 // }
-// console.log(TransactionColumns)
+
 
 export const UserColumns: ColumnDef<UserType>[] = [
   {
@@ -314,7 +325,7 @@ export const PayoutColumns: ColumnDef<PayoutType>[] = [
     header: "Payment ID",
     cell: ({ row }) => {
       const nameData = row.original; // The whole row's data
-      console.log(nameData);
+   
       return (
         <div className="flex items-center space-x-2">
           {/* <Link
@@ -395,7 +406,58 @@ export const PayoutColumns: ColumnDef<PayoutType>[] = [
     },
   },
 ];
+export const UserBookingColumns: ColumnDef<UserBookingType>[] = [
+	{
+		accessorKey: "id",
+		header: "Booking ID",
+	},
+	{
+		accessorKey: "customer",
+		header: "Customer",
+	},
+	
+	{
+		accessorKey: "talent",
+		header: "Talent",
+	},
+    {
+		accessorKey: "location",
+		header: "Location",
+	},
 
+	{
+		accessorKey: "date",
+    header: "Date",
+	},
+    {
+		accessorKey: "time",
+		header: "Time",
+	},
+	{
+		accessorKey: "status",
+		header: "Status",
+		cell: ({ row }) => {
+			const status = row.getValue("status");
+
+			return (
+				<div className="flex items-center">
+					<p
+						className={`px-2 py-2 flex items-center justify-center w-[122px] rounded-md text-sm font-medium ${
+							status === "Accepted"
+								? "bg-accept "
+								: status === "Pending"
+								? "bg-yellow "
+								: "bg-red-100 "
+						}`}
+					>
+						{status}
+					</p>
+				</div>
+			);
+		},
+	},
+	
+];
 
 
 

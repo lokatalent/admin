@@ -27,7 +27,6 @@ import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { log } from "console";
 
 export default function AuthForm({ type }: { type: string }) {
 	const [loading, setLoading] = useState(false);
@@ -48,8 +47,7 @@ export default function AuthForm({ type }: { type: string }) {
 		// Do something with the form values.
 		// ✅ This will be type-safe and validated.
 		setLoading(true);
-	console.log()
-		// type === "log-in" ? console.log('mama') : router.push("/signup/verify-email");
+	
 		setLoading(false);
 	}
 

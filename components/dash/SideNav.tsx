@@ -11,7 +11,6 @@ import { FaRegUser } from "react-icons/fa";
 // import { RiExchange2Line } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 
-
 const links = [
 	{
 		id: 1,
@@ -69,12 +68,13 @@ const SideNav = () => {
 			</div>
 
 			<div>
-				<div className="flex space-x-3 items-center font-semibold p-3 hover:p-3 focus:p-3 hover:bg-white/30 focus:bg-white/30 rounded-lg">
+				<Link
+					href="/settings"
+					className="flex space-x-3 items-center font-semibold p-3 hover:p-3 focus:p-3 hover:bg-white/30 focus:bg-white/30 rounded-lg"
+				>
 					<IoSettingsOutline /> <p>Settings</p>
-				</div>
-				<div className="items-center font-semibold  hover:p-3 focus:p-3 hover:bg-white/30 focus:bg-white/30 rounded-lg">
-					Gabriel Daramola
-				</div>
+				</Link>
+				<div className="items-center font-semibold  ">Gabriel Daramola</div>
 			</div>
 		</div>
 	);
