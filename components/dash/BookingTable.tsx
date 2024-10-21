@@ -72,7 +72,6 @@ async function getData(): Promise<BookingType[]> {
 
 
 
-
 export default async function BookingTable({ isHome , data }: {isHome: boolean, data: BookingType []}) {
 	// const data = await getData();
 

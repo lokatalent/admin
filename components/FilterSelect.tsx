@@ -23,13 +23,13 @@ function FilterSelect({ filterType }) {
 		setSelectedOptions((prevSelectedOptions) => {
 			let newSelectedOptions = [...prevSelectedOptions];
 
-			// Apply the logic from processArrays to update the arrays
-			const processArrays = (
-				oldArray: string[],
-				newArray: string[],
-				newValue: string,
-			) => {
-				let found = false;
+      // Apply the logic from processArrays to update the arrays
+      const processArrays = (
+        oldArray: string[],
+        newArray: string[],
+        newValue: string
+      ) => {
+        let found = false;
 
 				oldArray.forEach((item: string) => {
 					const index = newArray.indexOf(item);
@@ -47,11 +47,11 @@ function FilterSelect({ filterType }) {
 					// setCheckSeen(false);
 					newArray.push(newValue);
 
-					console.log(`No matching item found. Added ${newValue} to newArray.`);
-				}
+          console.log(`No matching item found. Added ${newValue} to newArray.`);
+        }
 
-				return newArray;
-			};
+        return newArray;
+      };
 
 			// Process the arrays, using the current selected options and the filterArray
 			newSelectedOptions = processArrays(
@@ -61,9 +61,6 @@ function FilterSelect({ filterType }) {
 			);
 			checkHandler(value, filterArray);
 
-			return newSelectedOptions;
-		});
-	};
 
 	// Helper function to remove an option from selectedOptions
 	const handleRemoveOption = (value: string) => {

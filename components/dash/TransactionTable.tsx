@@ -34,7 +34,6 @@ async function getData(): Promise<TransactionType[]> {
 }
 
 
-
 export default async function TransactionTable() {
 	const data: TransactionType[] = await getData();
 

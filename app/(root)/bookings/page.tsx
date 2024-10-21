@@ -4,7 +4,14 @@ import { IoMdTrendingUp, IoMdTrendingDown } from "react-icons/io";
 import { BookingType } from "@/components/columns/UserColumns";
 import BookingTable from "@/components/bookings/BookingTable";
 
-
+ type BookingType = {
+  id: string;
+  customer: string;
+  talent: string;
+  date: string;
+  time: string;
+  status: "Pending" | "Accepted" | "Declined";
+};
 
 async function getData(): Promise<BookingType[]> {
   return [
