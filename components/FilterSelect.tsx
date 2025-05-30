@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	Select,
 	SelectContent,
@@ -9,75 +9,75 @@ import {
 import { Button } from "./ui/button";
 import { IoClose } from "react-icons/io5";
 
-
 export type BookingType = {
 	name: string;
 	options: string[];
 };
 
+interface FilterSelectProps {
+	filterType: any[];
+	onApplyFilters?: (filters: string[]) => void;
+	onResetFilters?: () => void;
+	selectedFilterOptions: string[];
+	onRemoveFilterOption?: (option: string) => void;
+}
 
-function FilterSelect({filterType}) {
-	const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-	//   const [checkSeen, setCheckSeen] = useState<boolean>([]);
+function FilterSelect({ filterType, onApplyFilters, onResetFilters, selectedFilterOptions, onRemoveFilterOption }: FilterSelectProps) {
+	const [localSelectedOptions, setLocalSelectedOptions] = useState<string[]>(selectedFilterOptions);
 
-	// Helper function to handle selecting values
+	// Update local state when props change
+	useEffect(() => {
+		setLocalSelectedOptions(selectedFilterOptions);
+	}, [selectedFilterOptions]);
+
+
+	// Helper function to handle selecting values (allows multiple selections)
 	const handleValueChange = (value: string, filterArray: string[]) => {
-    console.log("Filter array:", filterArray);
-    console.log(value)
-
-    setSelectedOptions((prevSelectedOptions) => {
-      let newSelectedOptions = [...prevSelectedOptions];
-
-      // Apply the logic from processArrays to update the arrays
-      const processArrays = (
-        oldArray: string[],
-        newArray: string[],
-        newValue: string
-      ) => {
-        let found = false;
-
-        oldArray.forEach((item: string) => {
-          const index = newArray.indexOf(item);
-          if (index !== -1) {
-            newArray.splice(index, 1);
-            newArray.push(newValue);
-            //   setCheckSeen(true)
-            console.log("check true");
-            console.log(`Removed ${item} from newArray and added ${newValue}`);
-            found = true;
-          }
-        });
-
-        if (!found) {
-          // setCheckSeen(false);
-          newArray.push(newValue);
-          console.log("check false  ");
-
-          console.log(`No matching item found. Added ${newValue} to newArray.`);
-        }
-
-        return newArray;
-      };
-
-      // Process the arrays, using the current selected options and the filterArray
-      newSelectedOptions = processArrays(
-        filterArray,
-        newSelectedOptions,
-        value
-      );
-      checkHandler(value, filterArray)
-
-      return newSelectedOptions;
-    });
-  };
-
-
-	// Helper function to remove an option from selectedOptions
-	const handleRemoveOption = (value: string) => {
-		setSelectedOptions((prevSelectedOptions) => {
-			return prevSelectedOptions.filter((option) => option !== value);
+		console.log("Filter array:", filterArray);
+		console.log("Selected value:", value);
+		
+		setLocalSelectedOptions((prevSelectedOptions) => {
+			const newSelectedOptions = [...prevSelectedOptions];
+			
+			// Check if this specific value is already selected
+			const isAlreadySelected = newSelectedOptions.includes(value);
+			
+			if (!isAlreadySelected) {
+				// Add the new option (no toggle behavior - only add)
+				newSelectedOptions.push(value);
+				console.log(`Added ${value} to filters`);
+			}
+			
+			return newSelectedOptions;
 		});
 	};
+	// Helper function to remove an option from selectedOptions
+	const handleRemoveOption = (value: string) => {
+		setLocalSelectedOptions((prevSelectedOptions) => {
+			return prevSelectedOptions.filter((option) => option !== value);
+		});
+		
+		// Also call the parent's remove function
+		if (onRemoveFilterOption) {
+			onRemoveFilterOption(value);
+		}
+	};
+
+	// Handle applying filters
+	const handleApplyFilters = () => {
+		if (onApplyFilters) {
+			onApplyFilters(localSelectedOptions);
+		}
+	};
+
+	// Handle reset filters
+	const handleResetFilters = () => {
+		setLocalSelectedOptions([]);
+		if (onResetFilters) {
+			onResetFilters();
+		}
+	};
+
 
 	return (
 		<div className="w-full gap-6 flex flex-col gap-[2rem]">
@@ -88,13 +88,13 @@ function FilterSelect({filterType}) {
 					<Button
 						variant="ghost"
 						className="text-primaryBlue"
-						onClick={() => setSelectedOptions([])}
+						onClick={handleResetFilters}
 					>
 						Reset
 					</Button>
 				</div>
 				<div className="flex items-center gap-3 flex-wrap">
-					{selectedOptions.map((name, index) => (
+					{localSelectedOptions.map((name, index) => (
 						<Button
 							key={index}
 							className="bg-primaryBlue px-3 py-3 text-white rounded-sm flex items-center gap-3 self-center w-max"
@@ -111,11 +111,15 @@ function FilterSelect({filterType}) {
 			<div>
 				{filterType.map((select, index) => (
 					<div
-						className="flex justify-between items-center w-full text-left"
+						className="flex justify-between items-center w-full text-left mb-4"
 						key={index}
 					>
 						<div>
-							<input type="checkbox" />
+							<input 
+								type="checkbox" 
+								checked={localSelectedOptions.some(option => select.options.includes(option))}
+								readOnly
+							/>
 							<span className="text-gray-700 ml-3">{select.name}</span>
 						</div>
 						<div>
@@ -123,20 +127,33 @@ function FilterSelect({filterType}) {
 								onValueChange={(value) =>
 									handleValueChange(value, select.options)
 								}
+								value="" // Always reset to empty after selection
 							>
-								<SelectTrigger className="w-min focus:outline-none border-none shadow-none"></SelectTrigger>
+								<SelectTrigger className="w-min focus:outline-none border-none shadow-none">
+									{(() => {
+										const selectedFromCategory = localSelectedOptions.filter(opt => select.options.includes(opt));
+										if (selectedFromCategory.length === 0) return "Select...";
+										if (selectedFromCategory.length === 1) return selectedFromCategory[0];
+										return `${selectedFromCategory.length} selected`;
+									})()}
+								</SelectTrigger>
 								<SelectContent>
 									<SelectGroup key={index}>
-										{select.options.map((option, index) => (
-											<SelectItem
-												key={index}
-												value={option}
-												// value={}
-												className="bold leading-none text-violet11 hover:font-bold hover:text-[#3377FF] hover:bg-[#3377FF3D] rounded-[7px] flex items-center h-[35px]"
-											>
-												{option}
-											</SelectItem>
-										))}
+										{select.options.map((option, optionIndex) => {
+											const isSelected = localSelectedOptions.includes(option);
+											return (
+												<SelectItem
+													key={optionIndex}
+													value={option}
+													disabled={isSelected}
+													className={`bold leading-none hover:font-bold hover:text-[#3377FF] hover:bg-[#3377FF3D] rounded-[7px] flex items-center h-[35px] ${
+														isSelected ? 'bg-[#3377FF3D] text-[#3377FF] font-bold opacity-50' : 'text-violet11'
+													}`}
+												>
+													{isSelected ? '✓ ' : ''}{option}
+												</SelectItem>
+											);
+										})}
 									</SelectGroup>
 								</SelectContent>
 							</Select>
@@ -148,7 +165,8 @@ function FilterSelect({filterType}) {
 			{/* Apply Button */}
 			<Button
 				className="bg-primaryBlue px-6 py-5 text-white rounded-sm self-center w-48"
-				disabled={selectedOptions.length === 0}
+				disabled={localSelectedOptions.length === 0}
+				onClick={handleApplyFilters}
 			>
 				Apply
 			</Button>

@@ -7,6 +7,8 @@ import {
 	useReactTable,
 	ColumnFiltersState,
 	getFilteredRowModel,
+  getSortedRowModel,
+	SortingState,
 	FilterFn,
 } from "@tanstack/react-table";
 
@@ -41,6 +43,10 @@ interface DataTableProps<TData, TValue> {
   selectOptions: string[];
   path: string;
   filterType: any;
+  onApplyFilters?: (filters: string[]) => void;
+  onResetFilters?: () => void;
+  selectedFilterOptions?: string[];
+  onRemoveFilterOption?: (option: string) => void;
 }
 
 interface GlobalFilter {
@@ -63,11 +69,16 @@ export function DataTable<TData, TValue>({
   title,
   selectOptions,
   path,
-  filterType
+  filterType,
+  onApplyFilters,
+  onResetFilters,
+  selectedFilterOptions,
+  onRemoveFilterOption
 }: DataTableProps<TData, TValue>) {
   console.log(selectOptions);
   const router = useRouter();
   const [globalFilter, setGlobalFilter] = useState<string>("");
+  const [sorting, setSorting] = useState<SortingState>([]);
   console.log(title);
  
 
@@ -76,14 +87,19 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     filterFns: {
       fuzzy: fuzzyFilter, //define as a filter function that can be used in column definitions
     },
     globalFilterFn: "fuzzy",
     state: {
       globalFilter,
+      sorting,
     },
     onGlobalFilterChange: setGlobalFilter,
+    onSortingChange: setSorting,
+    enableSortingRemoval: true,
+    enableMultiSort: true,
   });
 
   const handleNavigate = (id: number) => {
@@ -128,7 +144,7 @@ export function DataTable<TData, TValue>({
               <DialogTitle className="text-center">Filters</DialogTitle>
             </DialogHeader>
             <div className="w-full gap-6 flex flex-col gap-[2rem]">
-              <FilterSelect filterType={filterType} />
+              <FilterSelect filterType={filterType} onApplyFilters={onApplyFilters} onResetFilters={onResetFilters} selectedFilterOptions={selectedFilterOptions || []} onRemoveFilterOption={onRemoveFilterOption} />
             </div>
           </DialogContent>
         </Dialog>
@@ -140,13 +156,30 @@ export function DataTable<TData, TValue>({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                    <TableHead 
+                    key={header.id}
+                    className={header.column.getCanSort() ? "cursor-pointer select-none" : ""}
+                    onClick={header.column.getToggleSortingHandler()}
+                    >
+                      <div className="flex items-center gap-2">
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                        {header.column.getCanSort() && (
+                          <div className="flex flex-col">
+                            {header.column.getIsSorted() === "asc" ? (
+                              <span className="text-blue-500">↑</span>
+                            ) : header.column.getIsSorted() === "desc" ? (
+                              <span className="text-blue-500">↓</span>
+                            ) : (
+                              <span className="text-gray-400 hover:text-gray-600">↕</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </TableHead>
                   );
                 })}

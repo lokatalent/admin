@@ -28,6 +28,6 @@ export const UserFilter = [
 	},
 	{
 		name: "Account Status",
-		options: ["Pending", "In Progress", "Completed", "Cancelled"],
+		options: ["Active", "Suspended", "Deleted"],
 	},
 ];
